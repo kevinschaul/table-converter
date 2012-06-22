@@ -1,3 +1,6 @@
+.row {
+    clear: both;
+}
 .span6 {
     width: 50%;
     float: left;
@@ -9,4 +12,18 @@ textarea.input {
 #preview {
     padding: 15px;
     border: 1px solid #ccc;
+}
+
+
+table {
+    text-align: left;
+}
+tr {
+    line-height: 2.0em;
+}
+tr.even {
+    background-color: #ccc;
+}
+tr.odd {
+    background-color: #eee;
 }
