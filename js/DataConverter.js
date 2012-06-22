@@ -20,6 +20,7 @@ function DataConverter(nodeId) {
         {"text":"JSON - Row Arrays", "id":"jsonArrayRows", "notes":""}
     ];
     this.outputDataType         = "html";
+    this.id                     = "table-1";
 
     this.columnDelimiter        = "\t";
     this.rowDelimiter           = "\n";
@@ -46,6 +47,9 @@ function DataConverter(nodeId) {
     this.includeWhiteSpace      = true;
     this.useTabsForIndent       = false;
 
+    this.sortColumn             = 0;
+    this.sortOrder              = 0;
+
 }
 
 //---------------------------------------
@@ -70,6 +74,15 @@ DataConverter.prototype.create = function() {
     $("#dataSelector").bind("change",function(evt){
         self.outputDataType = $(this).val();
         self.convert();
+    });
+
+    $("#select-sort").change(function() {
+        self.sortColumn = $("#select-sort").val();
+        self.sort();
+    });
+    $("#select-sort-order").change(function() {
+        self.sortOrder = $("#select-sort-order").val();
+        self.sort();
     });
 }
 
@@ -96,11 +109,30 @@ DataConverter.prototype.convert = function() {
         var headerTypes = parseOutput.headerTypes;
         var errors = parseOutput.errors;
 
-        this.outputText = DataGridRenderer[this.outputDataType](dataGrid, headerNames, headerTypes, this.indent, this.newLine);
+        this.outputText = DataGridRenderer[this.outputDataType](dataGrid, headerNames, headerTypes, this.indent, this.newLine, this.id);
         this.outputTextArea.val(errors + this.outputText);
 
         $(this.previewDiv).html(this.outputText);
-
+        
     };
+
+
+//TODO if we want to sort..
+    var selectOptions = "";
+    for (i in headerNames) {
+        selectOptions += "<option value=\"" + i + "\">"
+                + headerNames[i] + "</option>";
+    }
+    $("#select-sort").html(selectOptions);
+}
+
+DataConverter.prototype.sort = function() {
+
+    var options = {
+        sortList: [
+            [this.sortColumn, this.sortOrder]
+        ]
+    };
+    $("#table-1").tablesorter(options);
 }
 

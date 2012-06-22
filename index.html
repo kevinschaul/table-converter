@@ -26,6 +26,21 @@
             <textarea class="input" id="dataOutput"></textarea>
         </div>
     </div>
+    <div class="row">
+        <div class="span12">
+            <h4>Options</h4>
+            <label for="form-options">Sort by:</label>
+            <form id="form-options">
+                <select id="select-sort">
+                <!-- options are filled in with js -->
+                </select>
+                <select id="select-sort-order">
+                    <option value="0">Ascending</option>
+                    <option value="1">Descending</option>
+                </select>
+            </form>
+        </div>
+    </div>
 
     <div class="row">
         <div class="span12">
@@ -37,6 +52,7 @@
 </div> <!-- /container -->
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="js/CSVParser.js"></script>
 <script type="text/javascript" src="js/DataGridRenderer.js"></script>
 <script type="text/javascript" src="js/DataConverter.js"></script>
