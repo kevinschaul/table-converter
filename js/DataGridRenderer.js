@@ -111,7 +111,7 @@ var DataGridRenderer = {
         } else {
             classes.push("odd");
         }
-        var rowClassName = "class=\"";
+        var rowClassName = " class=\"";
         var classesLength = classes.length;
         for (j in classes) {
             rowClassName += classes[j];
