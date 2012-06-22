@@ -1,0 +1,1273 @@
+/* New global stylesheet for re-design 2011*/
+
+/* ##################################################
+     TABLE OF CONTENTS
+################################################## 
+
+!0! reference
+!1! reset
+!2! re-useable
+!3! components
+!4! page layout
+!5! section/channel specific
+!6! page-specific
+!7! misc
+
+*/
+
+/* ############################################
+     COMMON STYLE INFO FOR EASY REFERENCE
+############################################### 
+
+Fonts:
+text = Arial
+links = Georgia
+headings = Arial, bold
+
+Colors:
+text = #303030 (dk grey)
+links dk blue = #09334b
+links orange = #BC5C23
+headings = #000000 (black)
+icons & alerts = #bc5c23 (orange)
+labels = #333333 (grey)
+
+Borders:
+thick dark border = #000
+thick border = #8a8a8a
+thin border = #c7c7c7
+
+*/
+
+/* ############################################
+     NAMING SCHEME FOR NEW ELEMENTS
+############################################### 
+
+pg_ = a specific page (homepage)
+se_ = a section/channel (sports, blogs)
+he_ = headings
+ic_ = icons
+co_ = components (re-useable or special)
+sp_ = spacers/dividers
+fo_ = font & text changes (all-caps, etc)
+js_ = javascript/jquery plug-ins and scripts
+
+*/
+
+
+/* ##################################################
+!1!	RESET STYLES
+################################################## */
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, figure, footer, header, 
+hgroup, menu, nav, section, menu,
+time, mark, audio, video {
+  margin:0;
+  padding:0;
+  border:0;
+  outline:0;
+  font-size:100%;
+  vertical-align:baseline;
+  background:transparent;
+}                  
+article, aside, figure, footer, header, 
+hgroup, nav, section { display:block; }
+nav ul { list-style:none; }
+blockquote, q { quotes:none; }
+blockquote:before, blockquote:after,
+q:before, q:after { content:''; content:none; }
+a { margin:0; padding:0; font-size:100%; vertical-align:baseline; background:transparent; }
+ins { background-color:#ff9; color:#000; text-decoration:none; }
+mark { background-color:#ff9; color:#000; font-style:italic; font-weight:bold; }
+del { text-decoration: line-through; }
+abbr[title], dfn[title] { border-bottom:1px dotted #000; cursor:help; }
+/* tables still need cellspacing="0" in the markup */
+table { border-collapse:collapse; border-spacing:0; }
+hr { display:block; height:1px; border:0; border-top:1px solid #ccc; margin:1em 0; padding:0; }
+input, select { vertical-align:middle; }
+/* END RESET CSS */
+
+/*
+fonts.css from the YUI Library: developer.yahoo.com/yui/
+          Please refer to developer.yahoo.com/yui/fonts/ for font sizing percentages
+
+There are three custom edits:
+ * remove arial, helvetica from explicit font stack
+ * make the line-height relative and unit-less
+ * remove the pre, code styles
+*/
+body { font:13px sans-serif; *font-size:small; *font:x-small; line-height:1.22; }
+table { font-size:inherit; font:100%; }
+select, input, textarea { font:99% sans-serif; }
+
+/* normalize monospace sizing 
+ * en.wikipedia.org/wiki/MediaWiki_talk:Common.css/Archive_11#Teletype_style_fix_for_Chrome
+ */
+pre, code, kbd, samp { font-family: monospace, sans-serif; }
+
+/* grey looks better than black */ 
+body, select, input, textarea { color:#303030; }
+
+/* www.aestheticallyloyal.com/public/optimize-legibility/ */ 
+h1,h2,h3,h4,h5,h6 { font-weight: bold; text-rendering: optimizeLegibility; }
+
+/* maxvoltar.com/archive/-webkit-font-smoothing
+html { -webkit-font-smoothing: antialiased; } */
+
+/* Accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
+a:hover, a:active { outline: none; }
+small { font-size:90%; }
+strong, th { font-weight: bold; }
+td, td img { vertical-align:top; } 
+sub { vertical-align: sub; font-size: smaller; }
+sup { vertical-align: super; font-size: smaller; }
+pre { 
+  padding: 15px; 
+  /* www.pathf.com/blogs/2008/05/formatting-quoted-code-in-blog-posts-css21-white-space-pre-wrap/ */
+  white-space: pre; /* CSS2 */
+  white-space: pre-wrap; /* CSS 2.1 */
+  white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+  word-wrap: break-word; /* IE */
+}
+/* align checkboxes, radios, text inputs with their label
+   by: Thierry Koblentz tjkdesign.com/ez-css/css/base.css  */
+input[type="radio"] { vertical-align: text-bottom; }
+input[type="checkbox"] { vertical-align: bottom; *vertical-align: baseline; }
+.ie6 input { vertical-align: text-bottom; }
+
+/* hand cursor on clickable input elements */
+label, input[type=button], input[type=submit], button { cursor: pointer; }
+
+/* These selection declarations have to be separate.
+   No text-shadow: twitter.com/miketaylr/status/12228805301 */
+::-moz-selection{ background: #bc5c23; color:#fff; text-shadow: none; }
+::selection { background:#bc5c23; color:#fff; text-shadow: none; }
+
+/*  j.mp/webkit-tap-highlight-color */
+a:link { -webkit-tap-highlight-color: #bc5c23; } 
+
+/* always force a scrollbar in non-IE */
+html { overflow-y: scroll; }
+
+/* make buttons play nice in IE:    
+   www.viget.com/inspire/styling-the-button-element-in-internet-explorer/ */
+button {  width: auto; overflow: visible; }
+
+/* bicubic resizing for non-native sized IMG: 
+   code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/ */
+.ie7 img { -ms-interpolation-mode: bicubic; }
+
+/* ##################################################
+!2!	RE-USEABLE HELPER STYLES
+################################################## */
+
+ul, ol { list-style-type:none; }
+body { text-align: center; font-size: 75% /* 12px */; font-family: arial, helvetica, sans-serif; }
+a, a:link{ color:#09334b; text-decoration: underline; }
+a:hover { color:#3461a1; }
+.no_underline  a{text-decoration:none;}
+.underline_hover a:hover{text-decoration:underline; color: #09334B;}
+
+/* styles our standard georgia link */
+a.main_link, .main_link a{text-decoration: none; font-family: Georgia, Times, serif; color: #09334B;}
+a.main_link:hover, .main_link a:hover{ text-decoration: underline; color: #09334B;}
+
+a.photo_hover img { border:1px solid #ccc; }
+a.photo_hover img:hover { border-style:inset; border:1px solid #8A8A8A; }
+
+h1, h2, h3, h4, h5, h6 { color:#000; font-weight:bolder; }
+h4, h5, h6 { margin:10px 0; }
+h3 { padding:10px 0; margin:20px 0 0; }
+h1 { font-size:260%; /* 31px */ }
+h2 { font-size:200%; /* 24px */ }
+h3 { font-size:150%; /* 18px */ }
+h4 { font-size:125%; /* 15px */ }
+h5 { font-size:120%; /* 14px */ }
+h6 { font-size:100%; /* 12px */ }
+
+blockquote { font-family: Georgia, Helvetica, serif; font-size:130% /* 16pt */; font-style:italic; background:transparent url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/blockquote-background.gif') no-repeat 0 5px; }
+blockquote a, blockquote a:link, blockquote a:visited { text-decoration:none; }
+blockquote a:hover, blockquote a:active { text-decoration:underline; color:#09334B; }
+cite a, cite a:link, cite a:visited { text-decoration:none; }
+cite a:hover, cite a:active { text-decoration:underline; color:#09334B; }
+
+p { line-height:1.4em; margin:8px 0; }
+ul { margin:8px 0; }
+li { line-height:1.4em; margin:8px 0; }
+li p { margin:0; }
+.iconbglink li,  .iconindex li,  .listcol li { font-size: 90%; }
+#content-main ul { margin-left:30px; list-style-type: circle; }
+#content-main ol { margin-left:30px; list-style-type: decimal; }
+ul.iconindex li a, ul.iconindex li a:link, ul.iconindex li a:visited { color:#09334b; font-family:Georgia, Times, serif; text-decoration:none; }
+ul.iconindex li a:hover, ul.iconindex li a:active { text-decoration:underline; }
+
+/* SECTION HEADINGS */
+h3, .labelbarnew, .labelbarcustomize, div.labelbarcustomize, p.labelbarnew { font-size:150% /* 18px */; padding:6px 0; margin:20px 0 5px; border-top:3px solid #000; border-bottom:1px solid #c7c7c7; text-transform:uppercase; font-family: Arial, sans-serif; background-color:transparent; color:#000; position:relative; overflow:hidden; clear:both; font-weight:bold; }
+h3 a, h3 a:link, h3 a:visited, h3 a:hover, 
+.labelbarnew a, .labelbarnew a:link, .labelbarnew a:visited, .labelbarnew a:hover, 
+.labelbarcustomize a, .labelbarcustomize a:link, .labelbarcustomize a:visited, .labelbarcustomize a:hover { color:#000; font-family: Arial, sans-serif; font-weight:bold; }
+.labelbarnew a, .labelbarnew a:link, .labelbarnew a:visited, 
+h3 a, h3 a:link, h3 a:visited, .labelbarcustomize a, .labelbarcustomize a:link, .labelbarcustomize a:visited { text-decoration:none; }
+h3 a:hover, h3 a:active, .labelbarnew a:hover, .labelbarnew a:active, .labelbarcustomize a:hover, .labelbarcustomize a:active{ text-decoration:underline; }
+p.labelbarnew { height:auto; margin:20px 0 5px; }
+div#rightcolumn div.labelbarcustomize span.labelnobuttons { font-size: 100%; }
+h4 { position:relative; overflow:hidden; font-family: "Arial Bold", arial, sans-serif; padding-top:3px; font-weight:bold; }
+h4 a, h4 a:link, h4 a:visited { color:#000; font-size:100% /* 12px */ !important; font-family: Arial, sans-serif; text-decoration:none; }
+h4 a:hover, h4 a:active { text-decoration:underline; }
+h3 .more, h4 .more { float:right; font-size:85% }
+
+/* Image Replacement */
+.ir { display:block; text-indent:-999em; overflow:hidden; background-repeat: no-repeat; }
+
+/* Hide for both screenreaders and browsers */
+.hidden { display:none; visibility:hidden; } 
+
+/* Hide only visually, but have it available for screenreaders */
+.visuallyhidden { position:absolute !important;    
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px); }
+  
+/* Hide visually and from screenreaders, but maintain layout */
+.invisible { visibility: hidden; }
+
+/* CLEARFIX (place on container element of floats) */
+.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.clearfix { display: inline-block; }
+* html .clearfix { height: 1%; } /* Hides from IE-mac \*/
+.clearfix { display: block; }
+.clear { clear:both; }
+
+/* COLUMNS */
+.columns1234 { margin:0; padding:0; width:100%; }
+.column1 { width:142px; margin:0 14px 0 0; padding:0; float:left; }
+.column2 { width:142px; margin:0 14px 0 0; padding:0; float:left; }
+.column3 { width:142px; margin:0 14px 0 0; padding:0; float:left; }
+.column4 { width:142px; margin:0; padding:0; float:left; }
+.columns12 { width:310px; margin:0 12px 0 0; padding:0; float:left; }
+.columns123 { width:454px; margin:0 14px 0 0; padding:0; float:left; }
+.columns123home { width:454px; margin:0 7px 0 0; padding:0 6px 0 0; border-right:1px solid #CCC; float:left; }
+.columns23 { width:298px; margin:0 14px 0 0; padding:0; float:left; }
+.columns234 { width:454px; margin:0; padding:0; float:left; }
+.columns34 { width:310px; margin:0; padding:0; float:left; }
+/* .v2011.pg_hp .columns34 { padding:10px 0; } */
+#rightcolumn .column1 { float:left; width:142px; margin:0 14px 0 0; padding:0; }
+#rightcolumn .column2 { float:left; width:142px; margin:0; padding:0; }
+#leftcolumn .teaser140x90 { float:left; width:142px; margin:0 14px 0 0; padding:0; }
+
+/* CORRECTIONS */
+.correctionlabel{ font-size: 71%; color: #8F0F00; }
+
+/* HEADLINE SIZES */
+.hed1, .hed2, .hed3, .hed4, .hed5, .hed6, .hed7 { font-family:Georgia, Times, serif; }
+.hed1 a, .hed2 a { font-size:108%;}
+.hed1 a:link, .hed2 a:link, .hed3 a:link, .hed4 a:link, .hed5 a:link, .hed6 a:link, .hed7 a:link,
+.hed1 a:visited, .hed2 a:visited, .hed3 a:visited, .hed4 a:visited, .hed5 a:visited, .hed6 a:visited, .hed7 a:visited { text-decoration:none; }
+.hed1 a:hover, .hed2 a:hover, .hed3 a:hover, .hed4 a:hover, .hed5 a:hover, .hed6 a:hover, .hed7 a:hover,
+.hed1 a:active, .hed2 a:active, .hed3 a:active, .hed4 a:active, .hed5 a:active, .hed6 a:active, .hed7 a:active{ text-decoration:underline; color:#09334B; }
+.hed1 { font-size:100% /* 12px */; line-height:1.4em; margin-top:4px; font-weight:normal; }
+.hed2 { font-size:100% /* 12px */; line-height:1.2em; margin-bottom:7px; font-weight:normal; }
+.hed3 { font-size:150% /* 18px */; line-height:1.2em; font-weight:normal; }
+.hed4 { font-size:200% /* 24px */; line-height:1.2em; font-weight:normal; }
+.hed5, .storyhed { font-size:210% /* 25px */; line-height:1.2em; font-weight:normal; }
+.hed6 { font-size:260% /* 31px */; line-height:1.2em; font-weight:normal; }
+.hed7 { font-size:320% /* 38px */; line-height:1.2em; font-weight:normal; }
+div.block p span.headline { font-size:100% /* 12px */; }
+.iconbglink li, .iconindex li, .listcol li { font-size: 100% /* 12px */; }
+p.hed7, p.hed6, p.hed5 { line-height:1.2em; }
+ul.hed1, li.hed1, li.hed1 { line-height:1.4em; }
+
+/* FONT/TYPEFACE/COLOR/TEXT TWEAKS */
+.text, .textblock, .textrt, .strongtext, .ftrtext, .source, .byline, .bglink, .related, .caption, .teasehed, .toplinks, .label, .redtext, .more, .blocklabel, .summary { font-size: 90% /* 11px */; }
+.credit, .small, .title, .time, .pgtime, .tip, .alert, .nav3label { font-size: 85% /* 10px */; }
+.note { font-size: 71%; }
+.hed7 .alert, .hed6 .alert, .hed5 .alert, .hed4 .alert, .hed3 .alert, h2 .alert { font-size:.4em; line-height:1.2em; }
+.hed6 .alert { font-size:.3em; line-height:1.1em; }
+h2.hed2 .alert { font-size:.7em; }
+.hed3 .alert{ font-size:55%; }
+.alert, .redtext, .red { color:#BC5C23; font-weight:bold; text-transform:uppercase; /* padding-right:8px; */ font-family: arial, sans-serif; }
+p.alert { color:#BC5C23; margin-bottom:-1px; }
+.credit { color: #333; text-transform:uppercase; }
+.credit, cite.credit { text-align:right; font-style:normal; display:block; font-size:85%; color:# }
+div.listcol ol li.morelink { font-size: 100% /* 12px */; }
+div.block p span.headline { font-weight:normal; }
+.strongbodytext { font-size:100%; }
+.fo_uppercase { text-transform:uppercase; }
+.fo_lowercase { text-transform:lowercase; }
+.fo_capitalize { text-transform:capitalize; }
+.fo_defaultcase { text-transform:none; }
+.fo_textgrey, .label, .gray, .fo_textgrey a, .label a, .gray a { color:#333; }
+.label { font-family:Arial, sans-serif; font-size:85% /* 10px */; color:#333; font-weight:bold; text-transform:uppercase; }
+.label a, .label a:visited, .label a:link { text-decoration:none; }
+.label a:hover, .label a:active{ text-decoration:underline; }
+.fo_textblack { color:#000; }
+.fo_georgia { font-family:Georgia, Times, serif; }
+.fo_arial { font-family: arial, helvetica, sans-serif; }
+.fo_bold, .bold, .strong, .strongtext { font-weight:bold; }
+.fo_normal, .normal { font-weight:normal; }
+.breakingnews { margin-bottom:15px; border-bottom:1px solid #000; padding:10px 0; color:#000; }
+.breakingnews .alert { font-size:100%; }
+p small, p.small, .caption { line-height:1.3em; }
+.live { padding:1px 2px 1px 2px; margin:-1px 4px 0 0 !important; vertical-align:bottom; background-color:#bd5430; color:#fff; font-size:10px; text-align:center; font-family:Arial, sans-serif;}
+.gray_bg { background-color: #e0e0e0; }
+
+/* SPACERS AND DIVIDERS */
+.sp_divider, .divider { margin-top:14px; padding-top:14px; border-top:thin solid #c7c7c7; line-height:1px; }
+.sp_spacer, .vspacing, p.vspacing { padding-top:6px; line-height:1px; margin:0; }
+.floatleft { float:left; }
+.floatright { float:right; }
+p.vspacing { padding-top:6px; line-height:1px; margin:0; }
+.marginleft { margin:0 0 0 11px; }
+.marginright { margin:0 11px 0 0; }
+* html p.vspacing { padding-top:6px; line-height:1px; margin:0; }
+.hspacing{ padding:0px 4px; }
+.spacing { margin-bottom:7px; }
+div.infobox p, div.insetbox p { font-size:11px; margin:0 0 10px 0; padding:0; }
+div.infobox p span.factbox, div.insetbox p span.factbox { margin-bottom:8px; }
+div.insetbox p.title, div.infobox p.title { font-size:100% /* 12px */; font-weight:bold; padding:8px 0 0 0; border-top:1px solid #BABABA; margin-bottom:6px; }
+div.infobox .label, div.insetbox .label { font-size:100% /* 12px */; }
+div.infobox ul.iconindex li.Audio, 
+div.insetbox ul.iconindex li.Audio, 
+div.infobox ul.iconindex li.Video, 
+div.insetbox ul.iconindex li.Video, 
+div.infobox ul.iconindex li.King_Video, 
+div.insetbox ul.iconindex li.King_Video, 
+div.infobox ul.iconindex li.AP_video, 
+div.insetbox ul.iconindex li.AP_video, 
+div.infobox ul.iconindex li.Graphic_Animation, 
+div.insetbox ul.iconindex li.Graphic_Animation, 
+div.infobox ul.iconindex li.Talk_About_It, 
+div.insetbox ul.iconindex li.Talk_About_It, 
+div.infobox ul.iconindex li.Internal, 
+div.insetbox ul.iconindex li.Internal, 
+div.infobox ul.iconindex li.Related_story, 
+div.insetbox ul.iconindex li.Related_story, 
+div.infobox ul.iconindex li.Photograph, 
+div.insetbox ul.iconindex li.Photograph, 
+div.infobox ul.iconindex li.Photo_Gallery, 
+div.insetbox ul.iconindex li.Photo_Gallery, 
+div.infobox ul.iconindex li.External, 
+div.insetbox ul.iconindex li.External, 
+div.infobox ul.iconindex li.Inset_box, 
+div.insetbox ul.iconindex li.Inset_box, 
+div.infobox ul.iconindex li.Audio_Slideshow,
+div.insetbox ul.iconindex li.Audio_Slideshow {
+	font-size:100% /* 12px */;
+}
+.sp_border_bottom { border-bottom:1px solid #c7c7c7; }
+.sp_border_top { border-top:1px solid #c7c7c7; }
+.sp_border_left { border-left:1px solid #c7c7c7; }
+.sp_border_right { border-right:1px solid #c7c7c7; }
+.sp_border_vmid { background: url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/gray_px.gif') repeat-y 50% 0; }
+.sp_border_none { border:none !important; }
+.sp_5mar, ul.sp_5mar , li.sp_5mar , p.sp_5mar  { margin-top:5px; }
+.sp_10mar, ul.sp_10mar, li.sp_10mar, p.sp_10mar { margin-top:10px; }
+.sp_5pad, ul.sp_5pad, li.sp_5pad, p.sp_5pad { padding-top:5px; }
+.sp_10pad, ul.sp_10pad, li.sp_10pad, p.sp_10pad { padding-top:10px; }
+.sp_0pad, ul.sp_0pad, li.sp_0pad, p.sp_0pad { padding-top:0; }
+.sp_0mar, ul.sp_0mar, li.sp_0mar, p.sp_0mar { margin-top:0; }
+
+/* LISTS */
+.li_floatleft li { float:left; margin-right:15px; }
+.li_no_bullets, ul.li_no_bullets li { list-style-type:none; }
+ul.li_no_bullets,  ul.li_no_bullets { margin-left:20px; }
+
+/* ICONS */
+.ic_noicon { background-image:none; padding-left:0; padding-right:0; }
+.ic_twitter_15 { padding-left:20px; background:transparent url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/i-twitter-15x15.gif') no-repeat left top; }
+.ic_facebook_15 { padding-left:20px; background:transparent url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/i-facebook-15x15.gif') no-repeat left top; }
+
+.Inset_box { font-size:85% /* 10px */; }
+
+/* LINK BULLETS */
+.Audio, .Audio_Slideshow {
+	background: url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/icons/audio.gif') no-repeat 0 0;
+	text-indent:25px;
+}
+.Video, .King_Video, .AP_video {
+	background: url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/icons/video.gif') no-repeat 0 0;
+	text-indent:25px;
+}
+.Graphic_Animation {
+	background: url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/icons/graphic_animation.gif') no-repeat 0 0;
+	text-indent:25px;
+}
+.Talk_About_It {
+	background: url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/icons/comments.gif') no-repeat 0 0;
+	text-indent:25px;
+}
+.addthis-vertical-layout .Talk_About_It {
+	background: url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/icons/comments.gif') no-repeat -2px 0;
+	text-indent:25px;
+}
+.ie7 .Talk_About_It {
+	padding-right:6px;
+	overflow:hidden;
+}
+.Internal, .Related_story, .Inset_box {
+	background: url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/icons/internal_story-s.gif') no-repeat 4px 2px;
+	text-indent:25px;
+}
+.Photograph, .Photo_Gallery {
+	background: url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/icons/photo.gif') no-repeat 0 -2px;
+	text-indent:25px;
+}
+.External {
+	background: url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/icons/external_link.gif') no-repeat 0 0;
+	text-indent:25px;
+}
+.Email {
+	background: url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/icons/email.gif') no-repeat 0 0;
+	text-indent:25px;
+}
+.Rss {
+	background: url('http://seattletimes.nwsource.com/art/ui/1024/rss.gif') no-repeat 0 0;
+	text-indent:25px;
+}
+.Print {
+	background: url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/icons/print.gif') no-repeat 0 0;
+	text-indent:25px;
+}
+.sectionteaser p.Talk_About_It {
+    background: url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/icons/comments.gif') no-repeat 0 0px;
+    text-indent:25px;
+}
+.sectionteaser p.Internal, .sectionteaser p.Related_story, .sectionteaser p.Inset_box {
+    background: url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/icons/internal_story-s.gif') no-repeat 3px 2px;
+    text-indent:25px;
+}
+.sectionteaser p.Photograph, .sectionteaser p.Photo_Gallery {
+    background: url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/icons/photo.gif') no-repeat 0 -1px;
+    text-indent:25px;
+    
+}
+.sectionteaser p.External {
+    background: url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/icons/external_link.gif') no-repeat 0 -2px;
+    text-indent:25px;
+} 
+
+span.Audio, span.Audio_Slideshow, span.Video, span.King_Video, span.AP_Video, span.Graphic_Animation, span.Talk_About_It, span.Photograph, span.Photo_Gallery, span.External, span.Related_story, span.Internal { text-indent:0; padding-left:25px; }
+/* commented out because it was breaking the breaking news links under threecolumnvisual 5-1-12 MZ*/
+/* .ie7 .Audio, .ie7 .Audio_Slideshow, .ie7 .Video, .ie7 .King_Video, .ie7 .AP_Video, .ie7 .Graphic_Animation, .ie7 .Talk_About_It, .ie7 .Photograph, .ie7 .Photo_Gallery, .ie7 .External, .ie7 .Related_story, .ie7 .Internal { overflow:auto; } */
+.Audio a, .Video a, .Talk_About_It a, .Photograph a, .Photo_Gallery a, .External a, .Internal a, .Graphic_Animation a, .AP_Video a, .King_Video a { font-family:Georgia, Times, serif; }
+.Audio a:link, .Video a:link, .Email a:link, .Talk_About_It a:link, .Photograph a:link, 
+.Photo_Gallery a:link, .External a:link, .Internal a:link, .Graphic_Animation a:link,
+.Audio a:visited, .Video a:visited, .Talk_About_It a:visited, .Photograph a:visited, 
+.Photo_Gallery a:visited, .External a:visited, .Internal a:visited, .Graphic_Animation a:visited { text-decoration:none; }
+.Audio a:hover, .Video a:hover, .Talk_About_It a:hover, .Photograph a:hover, 
+.Photo_Gallery a:hover, .External a:hover, .Internal a:hover, .Graphic_Animation a:hover, 
+.Audio a:active, .Video a:active, .Talk_About_It a:active, .Photograph a:active, 
+.Photo_Gallery a:active, .External a:active, .Internal a:active, .Graphic_Animation a:active, .Email a:active, .Print a:active, .Email a:hover, .Print a:hover { text-decoration:underline; color:#09334B } 
+
+/* MORE LINKS */
+.more, .more a, .more a:link, .more a:visited, a.more, a.more:link, a.more:visited,
+.morelink, .morelink a, .morelink a:link, .morelink a:visited, a.morelink, a.morelink:link, a.morelink:visited
+{ color:#bc5c23; text-transform:uppercase; float:right; font-family:Arial, sans-serif; font-size:85%; font-weight:normal; padding-right:10px; background:transparent url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/i_arrow_bc5c23_right.gif') no-repeat right; }
+.more_arrow a
+{padding-right:10px; background:transparent url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/i_arrow_bc5c23_right.gif') no-repeat right; }
+.morelink a, .morelink a:link, .morelink a:visited, a.morelink, a.morelink:link, a.morelink:visited { text-decoration:none; }
+.morelink a:hover, .morelink a:active, a.morelink:hover, a.morelink:active { text-decoration:underline; color:#bc5c23; }
+.more a, .more a:link, .more a:visited, a.more, a.more:link, a.more:visited,
+.morelink a, .morelink a:link, .morelink a:visited, a.morelink, a.morelink:link, a.morelink:visited
+{ background-image:none; padding:0; }
+h4 .morelink, h4 .more { background-position:100% 2px; position:absolute; top:0; font-size:62%; right:0; font-family:Arial, sans-serif; }
+.more img { display:none; } /* take out later */
+
+/* CP HANDCODED AREAS */
+div.handcoded {font-size:90% /*11px*/;}
+div.handcoded .bglink {font-size:90% /*11px*/}
+div.handcoded p {margin-top:1px;}
+div.handcoded .oneline {float:left; margin-right:9px;}
+div.handcoded span.pipe {margin:0 3px;}
+
+/* ##################################################
+!3!	COMPONENTS
+################################################## */
+
+
+/*GOOGLE MAPS FOR STORIES*/
+.map {
+border: 1px solid black;
+height: 250px;
+width: 296px;
+float: right;
+clear: both;
+margin: 20px 0 2px 17px;
+padding: 0;
+}
+
+.mapcaption {
+    clear: both;
+    float: right;
+    margin: 0 0 14px 17px;
+    padding: 0;
+    width: 296px;
+}
+
+
+/* HP ABOVE THE FOLD */
+.co_banner_headline { padding-bottom:10px; }
+.co_banner_headline p { margin:0; }
+.co_banner_headline .handcoded { margin:3px 0; }
+.co_banner_headline ul.iconindex li { float:left; padding-right:10px; margin-top:0; max-height:15px; } 
+.co_2colvisual { width:298px; float:left; margin:10px 20px 10px 0; }
+.co_2colvisualfeat { width:298px; float:left; padding:6px; margin:0px 10px 10px 0px; background-color:#ccc; }
+.co_2_5colvisual { width:380px; float:left; margin:10px 20px 10px 0; }
+.co_2_5colvisual-r { float:left; width:232px; margin:0 0 10px; }
+.co_2colvisual-r { float:left; width:302px; margin:0 0 10px; }
+.co_3colvisual { width:454px; float:left; margin:5px 20px 10px 0; }
+.co_3colvisual-r { float:left; width:156px; margin:0 0 10px; }
+.co_3colvisual-right li { font-size:90% /* 11px */ }
+.co_4colvisual { width:608px; padding:11px 0 0 0; }
+.co_2colvisual .iconindex li, .co_2_5colvisual .iconindex li, 
+.co_3colvisual .iconindex li, .co_4colvisual .iconindex li { float:left; max-height:15px;}
+.co_3colvisual .playicon-lg { 
+	display: block;
+	background:url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/icons/play_button-sprite-3col-faux-player-44x44.png') 0 0 no-repeat;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 44px !important;
+	height: 44px !important;
+}
+.co_3colvisual .fauxplayer a:hover .playicon-lg { background-position: -44px 0px; }
+.ie7 .co_2colvisual .iconindex li, .ie7 .co_2_5colvisual .iconindex li, 
+.ie7 .co_3colvisual .iconindex li, .ie7 .co_4colvisual .iconindex li , .ie7 .co_banner_headline .iconindex li { float:none; }
+.co_2colvisual p, .co_2_5colvisual p, .co_3colvisual p, .co_4colvisual p { line-height:1.3em; margin:2px 0 2px; }
+.co_2colvisual-r p, .co_2_5colvisual-r p, .co_3colvisual-r p, .co_4colvisual-r p { line-height:1.3em; margin:5px 0 2px; }
+.co_2colvisual p, .co_2_5colvisual p, .co_3colvisual p, .co_4colvisual p { font-size:90%; }
+.co_2colvisual p.alert, .co_2_5colvisual p.alert, .co_3colvisual p.alert, .co_4colvisual p.alert { font-size:85%; }
+.co_2colvisual .handcoded p, .co_2_5colvisual .handcoded p, .co_3colvisual .handcoded p, .co_4colvisual .handcoded p { font-size:100%; }
+.co_2colvisual-r p, .co_2_5colvisual-r p, .co_3colvisual-r p, .co_4colvisual-r p { font-size:100%;	 }
+.co_2colvisual-r .hed7, .co_2_5colvisual-r .hed7, .co_3colvisual-r .hed7, .co_4colvisual-r .hed7,
+.co_2colvisual-r .hed6, .co_2_5colvisual-r .hed6, .co_3colvisual-r .hed6, .co_4colvisual-r .hed6,
+.co_2colvisual-r .hed5, .co_2_5colvisual-r .hed5, .co_3colvisual-r .hed5, .co_4colvisual-r .hed5,
+.co_2colvisual-r .hed4, .co_2_5colvisual-r .hed4, .co_3colvisual-r .hed4, .co_4colvisual-r .hed4,
+.co_2colvisual-r .hed3, .co_2_5colvisual-r .hed3, .co_3colvisual-r .hed3, .co_4colvisual-r .hed3,
+.co_2colvisual-r .hed2, .co_2_5colvisual-r .hed2, .co_3colvisual-r .hed2, .co_4colvisual-r .hed2,
+.co_2colvisual-r .hed1, .co_2_5colvisual-r .hed1, .co_3colvisual-r .hed1, .co_4colvisual-r .hed1 { margin:10px 0 0; }
+.co_2colvisual-r .co_mainstories_first.hed7, .co_2_5colvisual-r .co_mainstories_first.hed7, 
+.co_3colvisual-r .co_mainstories_first.hed7, .co_4colvisual-r .co_mainstories_first.hed7,
+.co_2colvisual-r .co_mainstories_first.hed6, .co_2_5colvisual-r .co_mainstories_first.hed6, 
+.co_3colvisual-r .co_mainstories_first.hed6, .co_4colvisual-r .co_mainstories_first.hed6,
+.co_2colvisual-r .co_mainstories_first.hed5, .co_2_5colvisual-r .co_mainstories_first.hed5, 
+.co_3colvisual-r .co_mainstories_first.hed5, .co_4colvisual-r .co_mainstories_first.hed5,
+.co_2colvisual-r .co_mainstories_first.hed4, .co_2_5colvisual-r .co_mainstories_first.hed4, 
+.co_3colvisual-r .co_mainstories_first.hed4, .co_4colvisual-r .co_mainstories_first.hed4,
+.co_2colvisual-r .hed7, .co_2_5colvisual-r .hed7, .co_3colvisual-r .hed7, .co_4colvisual-r .hed7,
+.co_2colvisual-r .hed6, .co_2_5colvisual-r .hed6, .co_3colvisual-r .hed6, .co_4colvisual-r .hed6,
+.co_2colvisual-r .hed5, .co_2_5colvisual-r .hed5, .co_3colvisual-r .hed5, .co_4colvisual-r .hed5,
+.co_2colvisual-r .hed4, .co_2_5colvisual-r .hed4, .co_3colvisual-r .hed4, .co_4colvisual-r .hed4
+ { line-height:1em; }
+.co_2colvisual .hed4, .co_2_5colvisual .hed4, .co_3colvisual .hed4, .co_4colvisual .hed4, 
+.co_2colvisual .hed3, .co_2_5colvisual .hed3, .co_3colvisual .hed3, .co_4colvisual .hed3 { margin:0 0 10px; }
+.co_2colvisual-r .hed4, .co_2_5colvisual-r .hed4, .co_3colvisual-r .hed4, .co_4colvisual-r .hed4, 
+.co_2colvisual-r .hed3, .co_2_5colvisual-r .hed3, .co_3colvisual-r .hed3, .co_4colvisual-r .hed3  { margin-bottom:0; }
+.co_2colvisual .popup_enlarge, .co_2_5colvisual .popup_enlarge, .co_3colvisual .popup_enlarge { float:right; }
+.co_banner_headline .handcoded { margin:3px 0; }
+.co_2colvisual-r ul.iconindex, .co_2_5colvisual-r ul.iconindex, .co_3colvisual-r ul.iconindex, .co_4colvisual-r ul.iconindex, 
+.co_2colvisual ul.iconindex, .co_2_5colvisual ul.iconindex, .co_3colvisual ul.iconindex, .co_4colvisual ul.iconindex { margin-top:4px; }
+.co_2colvisual-r ul.iconindex li, .co_2_5colvisual-r ul.iconindex li, .co_3colvisual-r ul.iconindex li, .co_4colvisual-r ul.iconindex li, 
+.co_2colvisual ul.iconindex li, .co_2_5colvisual ul.iconindex li, .co_3colvisual ul.iconindex li, .co_4colvisual ul.iconindex li, .insetbox ul.iconindex li, .co_4colvisual_stories ul.iconindex li { margin:0px 10px 5px 0; font-size:90%; padding-left:25px; text-indent:0px;}
+
+/*IN THE NEWS LINKS*/
+.co_inthenews { float:left; width:100%; font-family:Arial,sans-serif; border-bottom:1px solid #8A8A8A; padding: 0px; margin-bottom:20px; }
+.co_inthenews ul li a:link, div.co_inthenews ul li a:visited { text-decoration:none; }
+.co_inthenews ul li a:hover, div.co_inthenews ul li a:active { text-decoration:underline; color:#09334B; }
+.co_inthenews ul li { display:inline; float:left; border-left:1px solid #8A8A8A; padding:0px 8px; margin:0px; line-height:1em; }
+.co_inthenews ul { padding: 0; margin: 0; font-size:90%; }
+.co_inthenews ul li:first-child { border:none; }
+.co_inthenews p.fo_uppercase { display:inline; float:left; line-height:1em; padding:0 0 12px; font-size:90%; margin:0; }
+
+/* VISUAL TRIPLET */
+.co_teasers_3col { width: 450px; margin:10px 15px 10px 0; float:left; }
+.co_teasers_3col .co_teasers_3col-col { float:left; width:140px; margin-right:15px; }
+.co_teasers_3col .co_teasers_3col-col:last-child { margin-right:0; }
+.ie6 .co_teasers_3col .co_teasers_3col-col, 
+.ie7 .co_teasers_3col .co_teasers_3col-col, 
+.ie8 .co_teasers_3col .co_teasers_3col-col { float:left; width:140px; margin-right:10px; }
+.co_teasers_3col-col .label, .co_teasers_1col-col .label { padding:0; text-transform:uppercase; font-weight:bold; }
+.co_teasers_3col-col .text, .co_teasers_1col-col .text { line-height:1.4em; }
+.co_teasers_3col p, .co_teasers_1col-col p, .co_teasers_1col-col p.hed1 { margin:6px 0 0; }
+
+/* HP JUST-IN & SIMILAR 1 COL */
+.co_cp_1col { width:160px; float:left; margin-top:10px }
+.co_cp_1col li a, .co_cp_1col li a:link, .co_cp_1col li a:visited { text-decoration:none; font-family:Georgia, Times, serif; }
+.co_cp_1col li a:hover, .co_cp_1col li a:active { text-decoration:underline; color:#09334B }
+
+/* CONVERSATIONS & PERSPECTIVES QUOTE BOXES */
+.co_quotebox { padding: 2px 0 10px; }
+div.listcol { margin-left:0; } /* tabbed trending */
+div.co_quotebox blockquote {background: url(http://seattletimes.nwsource.com/art/ui/1024/v_2011/blockquote-background.gif) no-repeat; padding: 5px 0 0 25px; overflow:auto;}
+div.co_quotebox cite { display: block; margin: 5px 0 0 25px; font-family: Arial, sans-serif; font-size: 85% /* 10px */; font-style: normal; }
+div.co_quotebox cite a { font-family: Arial, sans-serif; }
+div.co_quotebox cite span { font-family:Arial, sans-serif; font-weight:bold; text-transform:uppercase; }
+/* DAY AT A GLANCE BOX */
+/*div.glancebox { width: 290px; padding: 10px; } */
+div.glancebox h4 { margin-bottom: 6px; }
+div.glancebox h6 { margin-bottom: 3px; font-size: 95%; }
+div.glancebox h6 a { color:#333; font-family:Arial, sans-serif; }
+.glancebox h6 a, .glancebox h6 a:visited, .glancebox h6 a:link { text-decoration:none; }
+.glancebox h6 a:hover, .glancebox h6 a:active { text-decoration:underline; }
+div.glancebox p {  }
+div.glancebox div.events p { line-height:1.5em; }
+div.glancebox div.alert { padding: 5px; background: #f1ebd3; border-top: 2px dotted #c7c7c7; border-bottom: 2px dotted #c7c7c7; font-size:90%; }
+div.glancebox div.alert div.icon { margin: 8px 5px 0 -4px; }
+.glancebox .alert .description { width: 224px; text-transform:none; color:#303030; }
+.glancebox .alert .description h5, .glancebox .alert .description p { margin:0; }
+div.glancebox div.glanceBoxRow { margin-bottom: 5px; }
+div.glancebox div.glanceBoxRow h6 { width: 55px; margin-right: 8px; text-transform: uppercase; }
+div.glancebox div.glanceBoxRow div.icon { width: 42px; margin-right:12px; text-align: center; }			
+div.glancebox div.glanceBoxRow div.links { width: 160px; }
+ div.glancebox div.glanceBoxRow div.links li { margin:5px 0; }
+ .glancebox .glanceBoxRow .links li a, .glancebox .glanceBoxRow .links li a:link, .glancebox .glanceBoxRow .links li a:visited { text-decoration:none; }
+ .glancebox .glanceBoxRow .links li a:hover, .glancebox .glanceBoxRow .links li a:active { text-decoration:underline; color:#09334B; }
+div.glancebox div.glanceBoxRow div.events { width: 215px; }
+p.weatherComponentTemperature { margin-top:0; }
+p.weatherComponentImage { margin:0; }
+	
+/* LOCAL NEWS PARTNERS */
+#co_local_news_parters h4 { padding-bottom:0; margin-bottom:0; }
+#co_local_news_parters ul { margin-top:20px; }
+
+/* TRENDING MODULE */
+.trending.trendingSidebar { padding:0; border-left:none; }
+.trending .grid120 { width:120px; }
+.trending .listcol li { font-size:100% /* 12px */ }
+.trending ul.mostViewedDuo { margin: 10px 0 0 -30px; }
+.trending ul.mostViewedDuo li { display: inline; margin-left: 30px; }
+.trending ul.mostViewedDuoMore { margin:0; }
+.trending ul.mostViewedDuoMore li { margin:0 30px 0 0; }
+.trending .ordList ol { list-style-type: decimal; margin-left:22px; }
+li.more { margin: 0; }
+div.trending div.fb-activity { border-top: 1px solid #555; }
+.trending .fb-activity h4 { overflow:visible; }
+div.trending div.fb-activity div.fb-box { background: #fff; }
+.trending .label { text-transform:uppercase; padding-bottom:3px; line-height:1.2em; font-weight:bold; }
+.trending .label a { font-family:Arial, sans-serif; }
+.trending .morelink { top:5px; }
+.trending .Photograph, .trending .Video { text-indent:0; padding-left:25px; }
+div.trending div.trendingItemImg { background:none repeat scroll 0 0 #000000; height:67px; overflow:hidden; position:relative; text-align:center; width:120px; margin-left:3px; }
+.trending .trendingItemCaption a { font-family:Georgia, Times, serif; }
+.trending .trendingItemCaption a, .trending .trendingItemCaption a:link, .trending .trendingItemCaption a:visited { text-decoration:none; }
+.trending .trendingItemCaption a:hover, .trending .trendingItemCaption a:active { text-decoration:underline; color:#038; }
+div.trending.trendingSidebar { border-left: none; padding: 0 0 15px 0; }
+.trending .ordList ol { margin-left: 30px; }
+.trending .trendingItemCaption a:hover, .trending .trendingItemCaption a:active { color: #09334B; }
+.trending p.trendingItemCaption { margin-left:3px; }
+
+/* Trending for story and blog refresh also insetboxes*/
+.ordList a {font-family:Georgia, "Times New Roman", Times, serif; text-decoration:none;}
+
+/* fix for inset boxes 3-12-12 */
+.insetbox a, .infobox a { text-decoration:none; }
+/* end 3-12-12 updates */
+
+.ordList a:hover, .insetbox a:hover, .infobox a:hover {text-decoration:underline; color:#09334B;}
+
+/* Remove morelink styling for trending module*/
+div.trending li.morelink a, div.trending li.morelink { background:none; color:#09334B; text-transform:none; float:none; font-family: Georgia,"Times New Roman",Times,serif; font-size:100%; }
+
+/* Updated font-size from 71% to 90% for story refresh*/
+div.infobox, div.insetbox { float:right; width:298px; clear:both; font-size:90% /*11px*/; margin:0 0 14px 14px; padding:0; }
+
+.fb-count{ width:130px; height:50px;  }
+
+/* Fix dialogue window when clicking recommned button so it appears above right column */
+#fb_recommend { position:absolute; z-index:5; }
+
+/* Hides the recommend flyout*/
+.fb_edge_widget_with_comment span.fb_edge_comment_widget iframe.fb_ltr {
+display: none !important;}
+
+/* fixes the Twitter widget styling for widgets placed directly into blog posts */
+.twtr-widget h3 {
+    border: none;
+    float: left; 
+	top:-10px
+}
+
+/* SOCIAL MEDIA SIGN-UP */
+#socialemail {width:632px; border-top:1px solid #cccccc; clear:both;}
+#socialemail p.divider{border:none;}
+.socialbox {width:142px; float:left; margin:0px 0px 0px 0px;}
+.verticalline {border-right:1px solid #ccc;margin-top:10px;height:105px;float:left;}
+.socialiconslist{list-style:none;margin:0px;padding:4px 0 0px 5px;width:142px;border:0px;text-decoration:none;font-size:12px;}
+.socialiconslist a{ text-decoration:none; font-family:Arial, "Times New Roman", Times, serif;}
+.socialiconslist a:hover {text-decoration:underline; color:#09334B;}
+ul.socialiconslist li.facebook, li.twitter, li.phone, li.delivery {padding:3px 0px 0px 25px;margin:4px 0px 0px 0px;vertical-align:middle;height:20px;text-decoration:none;}
+.socialbox .socialiconslist a { font-family: arial,helvetica,sans-serif; }
+ul.socialiconslist li.facebook {background:url(http://seattletimes.nwsource.com/art/ui/1024/facebook.gif) no-repeat;}
+ul.socialiconslist li.twitter {background:url(http://seattletimes.nwsource.com/art/ui/1024/twitter.gif) no-repeat;}
+ul.socialiconslist li.phone {background:url(http://seattletimes.nwsource.com/art/ui/1024/phone.gif) no-repeat;}
+ul.socialiconslist li.delivery {background:url(http://seattletimes.nwsource.com/art/ui/1024/delivery.gif) no-repeat;}
+hr.solid {border: 1px solid #ccc;margin:10px 0;width: 632px;}
+#email_signup {float:left;padding-bottom:10px;margin: 0px 0px 20px 10px;position: relative;}
+#email_signup img {width: 53px;float: left;margin: 5px 20px 0 10px;}
+#email_signup .signup_form {width: 370px;float:right;margin-top:12px;}
+#email_signup .signup_form h3 {font-size: 16px; /*line-height: 16px;*/margin: 0 0 5px 0;}
+#email_signup .signup_form p {font-size: 11px;line-height: 15px;color: #666;margin: 0 0 5px 0;width: 380px;}
+#email_signup .signup_form .email_input {width: 200px;float: left;height: 22px;padding: 0 0 0 5px;font-size: 13px;color: #999;margin: 0 10px 0 0;}
+#email_signup .signup_form .email_input:focus {color: #000;background-color: lightyellow;color: #000;}
+#email_signup .signup_form .email_submit {display: block;float: left;background: url(http://seattletimes.nwsource.com/art/ui/1024/email_subscribe_button.jpg) no-repeat 0 0;width: 64px;height: 21px;margin: 2px 0 0 0; padding: 0;border: 0;cursor: pointer;}
+#email_signup #meta_links {position: absolute;top: -21px;right: 0px;font-size: 11px;}
+#email_signup #meta_links a {float: left; text-decoration:none;	}
+#email_signup #meta_links a:hover {text-decoration:underline; color:#09334B;}
+#email_signup #meta_links span {float: left;padding-right: 5px;border-right: 1px solid #b9b9b9;margin-right: 5px;}
+#email_signup .error p.error_message {color: #bd181c;float: left;width: 200px;margin: 10px 0 0 0;}
+#email_signup .error .email_input { border: 1px solid #bd181c; color: #bd181c;}
+#email_signup .error .email_input:focus {color: #000;}
+
+/* Story Page Blog Page - "Share this" box */
+span#at15ptc { font-family:Arial; font-size:11px; font-weight:bold; color:#fff;}
+.addthis_share { height:20px; padding:0px; margin:0px; }
+.addthis_share span { float:left; }
+.addthis_share a { float:left; }
+.addthis-share-icons {width:470px; height:20px; }
+.addthis-vertical-layout {width:130px; float:right; padding: 0 0 0 15px; border-left:border-left: 1px solid #C7C7C7; margin-left:10px; min-height:142px; }
+.addthis-vertical-layout a{text-decoration:none;}
+ul.addthis-share-icons-container { list-style: none; margin: 0; padding: 0; font-size:85%; font-family:arial,helvetica,sans-serif;}
+ul.addthis-share-icons-container li { float: left; margin: 0;}
+ul.addthis-share-icons-container li.addthis_share { float: none; width: auto; height: auto; margin: 0; padding: 0;}
+ul.addthis-share-icons-container:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0;}
+ul.addthis-share-icons-container { display: inline-block; }
+
+/* Font override for comments in addthis vertical layout area*/
+.addthis-vertical-layout .Talk_About_It a, .addthis-vertical-layout .Email a, .addthis-vertical-layout .Print a  { font-family:arial,helvetica,sans-serif; }
+
+/* Start commented backslash hack \*/
+* html ul.addthis-share-icons-container { height: 1%; }
+ul.addthis-share-icons-container { display: block; }
+.pg_blog_index ul.addthis-share-icons-container li, .pg_blog_fullwidth ul.addthis-share-icons-container li {margin: 0 30px 0 0;}
+/* Close commented backslash hack */
+
+/*OUTBRAIN OVERRIDES*/
+.rec-link:link {text-decoration: none;}
+.rec-link:hover { text-decoration:underline; color:#09334B; }
+div#outbrain_widget_0{border-top:thin solid #C7C7C7;}
+
+/*TOP COMMENTS*/
+.gc_comments_label_crosspromo{
+font-size:120% /* 18px */; padding:6px 0; margin:0px 0 10px; border-top:3px solid #000; border-bottom:1px solid #c7c7c7; text-transform:uppercase; font-family: Arial, sans-serif; background-color:transparent; color:#000; position:relative; overflow:hidden; clear:both; font-weight:bold; line-height:.84em;  }
+.crosspromo_comments { background-color: #FFF; height: auto; padding-bottom: 20px; width: 298px; border-bottom:1px solid #CCC; margin: 0 0 30px 0;}
+.gc_crosspromo_comments_top { padding-bottom: 10px; padding-top: 0px; margin: 0 0 10px 0; }
+.gc_teasers_commentblock_crosspromo { margin-bottom: 10px; }
+.gc_teasers_comment_crosspromo { line-height: 1.5em; }
+.gc_crosspromo_comments_bottom  a, .gc_crosspromo_comments_bottom  a:visited{ text-decoration:none; color:#484848; padding-right: 10px; margin-bottom: 10px; background: url("http://seattletimes.nwsource.com/art/ui/1024/v_2011/i_arrow_bc5c23_right.gif") no-repeat scroll right center transparent; font-size:90%;}
+.gc_crosspromo_comments_bottom  a:hover, .gc_crosspromo_comments_bottom  a:active { text-decoration:underline; }
+.crosspromo_comments_ad { clear:right; float:right; }
+.crosspromo_comments_ad .gc_teasers_read a{  background: none; float: none; padding: 0; text-transform: uppercase; color:#BC5C23; text-decoration:none; font-size:78%; }
+.crosspromo_comments_ad .gc_teasers_read a:hover, .crosspromo_comments_ad .gc_teasers_read a:active { text-decoration:underline; }
+.gc_teasers_comment_crosspromo { background: url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/icons/large_grey_quote.gif') 0 0 no-repeat; text-indent:25px; }
+.crosspromo_comments_story_flatpage { background-color: #FFF; height: auto; padding-bottom: 20px; width: 632px; border-bottom:1px solid #CCC; margin: 0 0 30px 0;}
+
+/*RELATED ICONS*/
+ul.iconbglink .Internal, ul.iconbglink .Related_story, 
+ul.iconbglink .Audio,
+ul.iconbglink .Audio_Slideshow,
+ul.iconbglink .King_Video,
+ul.iconbglink .AP_video,
+ul.iconbglink .Graphic_Animation,
+ul.iconbglink .Talk_About_It,
+ul.iconbglink .addthis-vertical-layout,
+ul.iconbglink .Photo_Gallery,
+ul.iconbglink .Print,
+ul.iconbglink .Video, ul.iconbglink .Photograph, 
+ul.iconbglink .Email, ul.iconbglink .External, 
+ul.iconbglink .Inset_box,
+.infobox .Internal, .infobox .Related_story, .infobox .Audio, .infobox .External, .infobox .Photograph, .infobox .Video, .infobox .Graphic_Animation, .infobox .Talk_About_It { text-indent:0; padding-left: 25px; }
+#stBackgroundLabel h3 { font-size:120%; padding: 6px 0; line-height:.84em; }
+
+/* SECTIONTEASERS */
+.sectionteaser .floatleft { width:150px; }
+.sectionteaser .floatright { width:140px; }
+.sectionteaser.floatleft { width:300px; }
+.sectionteaser.floatright { width:300px; }
+.sectionteaser p { font-size:130% /* 16px */; line-height:1.3em; }
+.sectionteaser p .label { text-transform:uppercase; font-size:70%; }
+.sectionteaser h4 { /* margin-top:5px; padding-top:10px; */ }
+.sectionteaser a { font-family:Georgia, Times, serif; }
+.sectionteaser a:link, .sectionteaser a:visited { text-decoration:none; }
+.sectionteaser a:hover, .sectionteaser a:active{ text-decoration:underline; }
+.sectionteaser li a, .sectionteaser .floatleft a { color:#09334B }
+
+/* TEASERS */
+.co_teaser_2col { width:100%; padding:4px 0; font-size:95%; }
+#rightcolumn .co_teaser_2col { border-top:none; border-bottom:1px solid #c7c7c7; padding: 0 0 10px 0;  }
+.co_teaser_2col img { margin-right:10px; float:left; }
+#rightcolumn .co_teaser_2col img { margin:-5px 0 0 10px; float:right; padding:0 0 10px 0; }
+.co_teaser_2col p { margin:0; line-height:1.2em; }
+
+/* MULTIMEDIA */
+.co_multimedia_l { width:298px; float:left; margin:10px 20px 10px 10px; }
+.co_multimedia .label { text-transform:uppercase; font-weight:bold; }
+.co_multimedia_nav { color:#BBBBBB; text-transform:uppercase; text-align:right; font-family: Arial, sans-serif; font-size: 85%; font-weight: normal; }
+.co_multimedia_nav a, .co_multimedia_nav a:link, .co_multimedia_nav a:visited { font-family: Arial, sans-serif; color:#BC5C23; text-decoration:none; }
+.co_multimedia_nav a:hover, .co_multimedia_nav a:active { font-family: Arial, sans-serif; color:#BC5C23; text-decoration:underline; }
+.co_multimedia .column3 p, .co_multimedia .column4 p { font-size:95%; }
+.co_multimedia .column3 p.label, .co_multimedia .column4 p.label { font-size:90%; font-weight:bold; margin:4px 0; padding:3px 0 0; }
+/* VIDEO CENTERPIECE */
+div.st_videoembed { border:1px solid #676767; line-height:1.2em; padding:8px; }
+.co_3colvisual .st_videoembed { border:1px solid #fff; }
+div.st_videoembed h2 { line-height:1.1em; }
+div.st_videoembed a, div.st_videoembed a:link, div.st_videoembed a:visited  { text-decoration:none; font-family:Georgia, Times, serif; }
+div.st_videoembed a:hover, div.st_videoembed a:visited { text-decoration:underline; color:#09334B; }
+div.st_videoembed_photo { margin:0 auto 3px; position:relative; }
+div.st_videoembed .st_videoembed_play, .st_videoembed_playsm { position:absolute; top:0; display:block; }
+div.st_videoembed .st_videoembed_play {
+	display: block;
+	background: url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/icons/play_button-sprite.png') 0 0 no-repeat;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 30px !important;
+	height: 30px !important;
+}
+div.st_videoembed a:hover .st_videoembed_play { background-position:0 -30px; }
+.st_videoembed_playsm { top:5px; left:55px; display:block; position:absolute; width:60px; height:30px;
+	background: url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/icons/play_button-sprite.png') 30px 0 no-repeat;
+}
+a:hover .st_videoembed_playsm { background-position:30px -30px; }
+
+/* VIDEO CENTERPIECE - HOMEPAGE ONLY */
+div.st_videoembed_home p { font-weight: normal; }
+
+/* MUG SHOT */
+.co_mugshotimg { padding:0px 5px 2px 0px; }
+
+/* Crosspromo 4 col (near footer) */
+.co_xpromo_4col { width:944px; height:186px; border-top:1px solid #ccc; border-bottom:1px solid #ccc; padding:20px 0 10px; margin:0px 8px 0px 8px; }
+.co_xpromo_4col_b { float:left; width:220px; margin-right:20px; }
+.co_xpromo_4col_b_last { margin-right:0; }
+.crossPromoBar { width:944px; margin:0px 8px; padding:20px 0 10px; border-top:1px solid #ccc; border-bottom:1px solid #ccc; position:relative; overflow:hidden; }
+.crossPromoItem { float:left; width:220px; margin-left:20px; }
+.crossPromoItem.first { margin-left: 0; }
+.crossPromoItem p { margin: 2px 0; }
+.crossPromoBar a { font-family:Georgia, Times, serif; }
+.crossPromoBar a, .crossPromoBar a:link, .crossPromoBar a:visited { text-decoration:none; }
+.crossPromoBar a:hover, .crossPromoBar a:active { text-decoration:underline; color:#09334B; }
+.crossPromoBar .label { text-transform: none; font-weight: normal; }
+
+/* SPORTS SCOREBOARD */
+#shsMiniBody .text { font-size:100%; }
+
+/* HP SPORTS SCOREBOARD */
+.hp_scoreboard_left {font-size:11px; width:300px; float:left; margin:-10px 16px 0px 0px;}
+.hp_scoreboard_right {font-size:11px; margin:-10px 0px 0px 0px;}
+
+/* ADS */
+.co_ads, #admiddle3center { text-align:center; overflow:hidden; margin:20px auto; }
+.co_ads_top { margin:5px auto 20px; }
+.co_ads p, .co_ad_label { margin: 10px auto 2px; display: block; text-align: center; }
+#rightcolumn .co_ads { margin-top:0; }
+#google_st_300, #google_st_300 table { text-align:left; }
+#google_st_300 { line-height:1.4em; }
+#google_st_300 tr { width:100%; text-align:left; }
+#google_st_300 td { padding:5px 0; width:100%; }
+.header-ads { width:100%; font-size:0px; }
+#co_topadblock { width:100%; }
+#co_ad_topright, #adtopright { width:736px; float:left; padding:0 18px 0 0; border-right:1px solid #c7c7c7; margin: 0 18px 0 0; font-size: 0px; }
+#co_ad_right1, #adright1 { width:185px; float:left; }
+.co_ad_top { width:100%; text-align:center; }
+#owneriq01cont3 {overflow:auto;}
+#adbottom { overflow:hidden; position:relative; width:745px; text-align:center; margin:20px auto 0; }
+#adbottom img, #adbottom iframe { float:left; }
+#adbottom .co_ad_label, #topadblock .co_ad_label { margin:10px 5px 0 0; }
+#adrighthome.co_ads, #adright.co_ads { margin-top:5px; }
+#adtop1story { margin-bottom:5px; }
+#adtop { margin:10px 0 0; }
+#adtop1home { margin-top:10px; }
+div#adtopright img.ui, div#adbottom img.ui { float: left; height: 70px; margin-right: 1px; margin-top: 9px; width: 7px; }
+.pg_comics_ex #adtopright, .pg_channel #adtopright, .pg_srw_contest #adtopright { 
+	padding:0 8px 0 10px; background:transparent url('http://seattletimes.nwsource.com/art/ui/adv_top.gif') no-repeat 0 10px; }
+
+/* THE RAIL */
+div.newrail div.divider { border-bottom:1px solid #b3b3b3; margin-top:4px; margin-bottom:6px; }
+div.AboveAd { width:300px; margin-top:28px; border-bottom:1px solid #b3b3b3; height:313px; }
+div.opeds_feat { width:140px; float:left; height:313px; overflow: hidden; }
+div.opeds_feat p.title { color:#4d4d4d; font-size:15px; font-weight:bold; margin-bottom: 8px; }
+div.nwmarket_hp { width:147px; float:left; height:313px; overflow:hidden; }
+div.nwmarket_hp p.title{ color:#4d4d4d; font-size:15px; font-weight:bold; margin-bottom:8px; }
+div.opeds_feat div.divider { border-bottom:1px solid #b3b3b3; margin-top:6px; margin-bottom:6px; }
+div.nwmarket_hp div.divider { border-bottom:1px solid #b3b3b3; margin-top:6px; margin-bottom:6px; }
+.vert_divider { width:13px; height:307px; background:url(http://seattletimes.com/art/ui/1024/line_bg.gif) repeat-y; float:left; margin-bottom:6px; }
+div.newrailcontainer { width:164px; float:left; margin-bottom:14px; }
+div.newrail { border-left:1px solid #b3b3b3; border-right:1px solid #b3b3b3; border-top:0; border-bottom:0; padding:0 6px 0 6px; }
+div.newrail div.item { width:142px; background-color:#FFFFFF; padding:4px 4px 6px 4px; border:0; }
+div.newrail div.item:hover { background-color:#eaeaea; border:0; }
+div.newrail div.item p { clear: both; margin:0; padding:0; }
+div.newrail div.item div.thumbnail  { float:left; position:relative; width:142px; height:92px; top:0; left:0; }
+div.newrail div.item p.label { color:#4d4d4d; font-size:15px; font-weight:bold; }
+/* Rail dropping fix - 02/02/2010 -alovseth */
+div#leftcolumn, div#rightcolumn { overflow: hidden; }
+.newrailcontainer { margin-left: -5px; }
+
+/* BLOG MODULES */
+div.homepageblog_module,
+div.blog_module_blocks .blog_module_wrapper { border:1px solid #ccc; background-color:#f2f2f2; padding:2px 2px 6px 6px; margin-bottom:11px; clear:both; }
+div.homepageblog_module div.separator, div.blog_module_blocks .blog_module_wrapper div.separator { clear:both; height:4px; }
+div.homepageblog_module p.allblogs, div.blog_module_blocks .blog_module_wrapper p.allblogs { text-align:right; }
+div.homepageblog_module div p.floatleft img.ui, div.blog_module_blocks .blog_module_wrapper div p.floatleft img.ui { margin:3px 0px 4px 0px; }
+div.homepageblog_module .blogtitle, div.blog_module_blocks .blog_module_wrapper .blogtitle { font-family:georgia; font-size:14px; font-weight:bold; }
+div.homepageblog_module div.blogcontent, div.blog_module_blocks .blog_module_wrapper div.blogcontent { margin:left:4px; }
+div#teaserighthome div.homepageblog_module p.alert, 
+div#teaserighthome div.homepageblog_module p.text, 
+div#teaserighthome div.homepageblog_module p.strongtext,
+div#teaserighthome div.blog_module_blocks .blog_module_wrapper p.alert, 
+div#teaserighthome div.blog_module_blocks .blog_module_wrapper p.text, 
+div#teaserighthome div.blog_module_blocks .blog_module_wrapper p.strongtext {
+	font-size:100% ! important;
+}
+.blog_recent_entries  a:link, .blog_recent_entries a:visited  { font-family:Georgia; text-decoration: none; color:#09334B; }
+.blog_recent_entries a:hover, .header a:active { text-decoration:underline; color:#09334B;}
+.blog-headers h1{ font-size:200%; font-family:Georgia, "Times New Roman", Times, serif; font-weight:normal;}
+.blog-headers p {line-height:18px; margin:0px;}
+.blog-headers a:link, .blog-headers a:visited {text-decoration: none; color:#09334B;}
+.blog-headers a:hover { text-decoration:underline; color:#09334B; }
+.blog-headers .art {margin-right:10px;}
+
+/* More links at bottom of page */
+#morecontainer p { font-family: Georgia,"Times New Roman",Times,serif; color:#09334B; }
+/*NEW MORE ARROW*/
+#morecontainer a { float:right; margin:5px 0 5px 70px; padding-right: 20px; background: url("http://seattletimes.nwsource.com/art/ui/1024/v_2011/icons/large_arrow.gif") no-repeat scroll right center  transparent; text-decoration:none; text-align:right; font-weight:bold;}
+
+/*IMAGE CAROUSEL*/
+div.carouseltabs span#ImageControl p { background-color: #FFF; float: right; font-size: 71%; }
+#ImageControl a.next_button { background:url("http://seattletimes.nwsource.com/art/ui/1024/v_2011/i_arrow_bc5c23_right.gif") no-repeat scroll right center transparent; padding-right:10px; }
+#ImageControl a.previous_button { background:url("http://seattletimes.nwsource.com/art/ui/1024/v_2011/i_arrow_bc5c23_left.gif") no-repeat scroll left center transparent; padding-left:10px; }
+span#ImageControl {display:none;}
+.relatedlabel { font-size:71%; font-weight:bold; background-color:#F0EFEA; padding:3px 6px;}
+#PhotoContainer,
+#BackgroundContainer,
+#InsetBoxContainer { float:right; width:315px;}
+#ImageBox { float:right; width:298px; visibility:hidden; clear:both; margin:0 0 14px 17px; padding:0;} 
+.ImageDiv { width:298px; margin:0; padding:0; clear:both; float:right;}
+.ImageDiv a { float:left; }
+.ImageDiv .credit { margin-top:0; }
+.imgrt{ float:right; width:298px; margin:0 0 14px 17px;}
+div.backgrounds { float:right; width:298px; clear:both; margin:0; padding:0 0 8px 17px;}
+div.carouseltabs { width:298px; float:right; position:relative; margin:0 0 -10px 17px;}
+div.carouseltabs span#ImageControl p {font-size:71%;float:right;}
+#ImageControl a:link, #ImageControl a:visited{ color: #BC5C23; }
+#ImageControl a:link , #ImageControl a:visited { text-decoration:none; }
+#ImageControl a:hover, #ImageControl a:active { text-decoration:underline; }
+#ImageControl .hspacing { display:inline-block; }
+
+/* ##################################################
+!4!	PAGE LAYOUT
+################################################## */
+	
+.skip_content { top:-500px; position:absolute; }
+div.header { padding:0;}
+.header p { margin:0; padding:0; }
+.header a { font-family:Arial, sans-serif; }
+.header a, .header a:visited, .header a:link { text-decoration:none; }
+.header a:hover, .header a:active { text-decoration:underline; }
+.header #account_center_links { float:left; }
+.header #account_center_links a {color:#BC5C23; }
+
+.bulleted_list, .pg_blog .body ul, .pg_blog_index .body ul {list-style-type:disc; padding-left:40px;} /*formats a traditional bulleted list*/
+ul.nobullets { list-style: none;}
+ul.horizontal li { float: left;}
+div.mast {width: 100%;border-width:1px 0 0 0;border-color:#cccccc;border-style:solid;padding:5px 0;}
+div.mast div.headLinks { width: 310px;}	
+div.mast div.interiorHead {width:655px;}
+div.mast a, p.weatherComponentTemperature a { color:#bc5c23; }
+p.weatherComponentTemperature a, p.weatherComponentTemperature a:visited, p.weatherComponentTemperature a:link { text-decoration:none;}
+p.weatherComponentTemperature a:hover, p.weatherComponentTemperature a:active { text-decoration:underline;}
+div.mast p { font-size: 85%; /* 10px */ }
+div.mast div.headLinks li { margin-left:8px; padding-left:8px; border-left:1px solid #bbb; }
+div.mast div.headLinks li:first-child { margin:0; padding:0; border:none; }
+div.mast div.headLinks li a { font-weight:bold; text-transform:uppercase; }
+div.mast div.headLinks li.traffic a { display: block; padding-left: 18px; background: url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/icons/Traffic-16x12.gif') no-repeat 0 2px;}
+div.mast div.headLinks li.weather p { float: left;}
+div.mast div.headLinks div.informational { margin-top:35px; width:250px; padding:4px 0 5px 20px; background: url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/icons/header_alert.gif') no-repeat; }
+div.mast div.headLinks div.informational a, div.mast div.headLinks div.informational a:link, 
+div.mast div.headLinks div.informational a:visited { text-decoration:none; color:#000; }
+div.mast div.headLinks div.informational a:hover, div.mast div.headLinks div.informational a:active { text-decoration:underline; color:#000; }
+div.mast div.logoSmall {width:190px;padding:10px 5px 0 10px;}
+div.mast div.logoSmall a {display:block;}
+div.mast div.logoSmall p a {color:#565656;}
+div.mast div.pageHeader {border-left:1px solid #ccc;padding-left:20px;margin-top:10px;}
+div.mast div.pageHeader h1 a {font-family:Georgia, "Times New Roman", Times, serif;color:#000;font-weight:normal;font-size:1.2em;line-height:1.125em;}
+div.mast div.pageHeader h1 a:hover {text-decoration:none;}
+div.mast div.logo { width: 340px; text-align: center;padding-top:10px;}
+div.mast div.logo h1 a {display: block;width: 320px;height: 47px;background: url('http://seattletimes.nwsource.com/art/ui/seattletimeslogo_home.gif') center center no-repeat;text-indent: -9999px; margin-left:auto; margin-right:auto;}
+div.mast div.logo h2, div.mast div.logoSmall p  {font-weight:bold;font-size:.9em;color:#565656;font-family:Arial, sans-serif}
+.mast .logo h2 a { font-family:Arial, sans-serif;color:#565656; }
+div.mast div.searchAndSocial { text-align:right; padding-right:5px; width: 290px; }
+div.mast div.searchAndSocial div.search { margin-top: 20px;}
+div.mast div.searchAndSocial div.search p { padding:5px 0 0 0; color:#ccc}
+div.mast div.searchAndSocial div.social { float:right; width:90px; }
+div.mast div.searchAndSocial div.social p.floatleft { padding:0 5px 0 0; line-height:15px; }
+div.mast div.searchAndSocial #searchcontainer { float:right; margin:0; padding:0; width:235px; }
+div.mast div.searchAndSocial #searchcontainer input[type=input], div.mast div.searchAndSocial #searchcontainer .floatleft input {width: 165px; margin-right: 8px;}
+div.mast div.searchAndSocial #searchcontainer input[type=image], div.mast div.searchAndSocial #searchcontainer .floatright input {padding-top:2px;}
+div.mast p.weatherComponentImage { height: 14px; width: 16px; margin-right: 3px; margin-top:-2px;}
+div.mast p.weatherComponentImage img { max-width: 100%;}
+div.mast p.weatherComponentTemperature {display:block;margin-right:5px;}
+.mast .weatherLabel { display:none; }
+.header .js_date_long { padding-top:1px; }
+
+#container { width: 960px; margin: 0 auto; text-align:left; padding:0 10px; background-color:#fff; }
+
+.header ul, .header li, .header p { margin:0; padding:0; }
+
+#nav-sec { width:960px; margin:4px 0 1px; padding:3px 0; border-width:1px 0; border-color:#ccc; border-style:solid;font-size:80%; }
+#nav-sec ul { margin: 1px auto; float: left; width:590px; padding:0; }
+#nav-sec ul li { list-style-type:none; margin:0; padding:0 3px 0 0; float:left; color:#999; position:relative; z-index:9990; }
+#nav-sec div#nav-sec-user {width:370px;float:right;text-align:right;}
+#nav-sec div#nav-sec-user ul {width:auto;float:right;}
+#nav-sec ul li, #nav-sec ul li a {line-height:1.45em;}
+#nav-sec ul li a { margin:0; font-family:Arial, sans-serif; color:#bc5c23; }
+#nav-sec ul li ul li a { text-transform:none; }
+#nav-sec ul li a.nav_last { border-right:none; }
+
+/* 2ND TIER */
+#nav-sec ul li .nav-sec-sticky {padding:0 15px 1px 0;background:url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/nav-arrow.png') no-repeat top right;}
+#nav-sec ul li a.open {background-position:bottom right;}
+#nav-sec ul li ul.nav-sec-tier2 {width:100px;padding:2px 5px 5px;margin:0;border:1px solid #ccc;background-color:#fff;display:none;position:absolute;top:1.75em;right:4px;}
+#nav-sec ul li ul.open {display:block;}
+#nav-sec ul li ul.nav-sec-tier2 li {display:block;float:none;padding:5px 0 0 0;}
+#nav-sec div#nav-sec-user ul.nav-sec-tier2 {width:130px;float:none;text-align:left;}
+
+#nav { padding: 0; width: 960px; margin: 0 auto 5px; border-bottom: 2px solid #000000; border-top:1px solid #c7c7c7; z-index:9980; }
+#nav a, #nav a:visited, #nav a:link { text-decoration:none; }
+#nav a:hover, #nav a:active { text-decoration:underline; }
+#nav ul#nav_main { margin: 3px auto; float: left; width:605px; }
+#nav ul#nav_marketplace { margin: 3px auto; float: left; background-color:#ccd3db; width:355px; }
+
+/* HIDE SHOPPING FROM MARKETPLACE NAVIGATION*/
+
+		/*hides a tag text while keeping the formatting*/
+		.nav-shopping a {visibility:hidden;}
+		/* fixes global li:hover border for white li*/
+		#nav #nav_marketplace li:hover.nav-shopping  { border:solid white 1px; margin: -1px 0px -1px -3px;}
+		#nav_marketplace .nav-shopping{ background-color:white; } 
+		/* Hides dropdown menu for shopping*/
+		#nav_marketplace .nav-shopping .dropdown_1column{ display:none;	}
+		
+/* END HIDE SHOPPING FROM MARKETPLACE NAVIGATION*/
+
+
+/* START UPDATES FOR TARGET AD POSITION 3-14-12 */
+#nav ul#nav_marketplace { width:274px; float:right; } 
+#nav_ad { float:right; max-width:81px; margin-top:3px; overflow:hidden; }
+#nav_ad img { border-left:3px solid #fff; }
+#nav_marketplace .nav-shopping{ display:none; } 
+/* END UPDATES FOR TARGET AD POSITION 3-14-12 */
+
+
+#nav li { float:left; text-align:center; position:relative; padding: 5px 0px 6px 13px; margin:0; font-family: Arial, Helvetica, sans-serif; z-index:9980; line-height:1em; }
+#nav #nav_marketplace li li:hover, #nav li li, #nav #nav_marketplace li li, #nav li li:hover { border:0;margin:0;padding:3px 0;right:auto;top:auto; }
+#nav li:hover, #nav #nav_marketplace li:hover { border:solid #777; background:#fff; border-width:1px 1px 0 1px;padding: 4px 0px 6px 14px;margin:0 -1px 0 -2px;}
+#nav li:hover a { text-decoration:none; color:#09334b; border-right:1px solid #fff; }
+#nav ul li a { padding:0 14px 0 0; font-family:Arial, sans-serif; color:#000; border-right:1px solid #8a8a8a; display:block; }
+#nav ul li a:hover, #nav ul li:hover ul li a {text-decoration:none; color:#09334b;border-right:1px solid #ffffff;}
+#nav ul li a.nav_last, #nav ul li a.nav_last:hover { border-right:none; }
+#nav ul li.active a, #nav ul li.active ul li.active a, #nav ul li ul li.active a { color:#BE4700;} /*sets the active state on the top nav - sets to orange*/
+#nav ul li h3 a, #nav ul li h5 a, #nav ul li:hover h3 a, #nav ul li:hover h5 a, #nav ul li.active h3 a, #nav ul li.active h5 a, #nav ul li h3 a:hover, #nav ul li h5 a:hover {color:#000000;} /*clears the active state on dropdown container headers - sets to black*/
+#nav ul li.active ul li a {color:#0A2B3A;} /*clears the active state on dropdown container links - sets to blue*/
+#nav ul li ul li { display:block; width:85%; float:none; padding: 3px 0px; line-height:1.2em; }
+#nav ul li ul li a, #nav ul li:hover ul li a { padding:0; border:none; border-bottom:1px solid #fff; display:inline; font-family: Georgia, serif; }
+#nav ul li ul li a:hover { padding:0; border:none; text-decoration:underline; }
+#nav h3 { margin:-9px 0 10px 5px; font-family:Arial, sans-serif; font-size: 120% /* 14px */; padding: 6px 0; }	
+#nav ul li h3 a { padding-left:0; }
+#nav h3 img { margin:0 0 1px 2px; }
+#nav .dropdown_1column, #nav .dropdown_2columns, 
+#nav .dropdown_3columns, #nav .dropdown_4columns, #nav .dropdown_5columns { 
+	margin:5px auto; float:left; position:absolute; left:-999em; text-align:left; padding:10px 0 10px 5px; border:1px solid #777777; background:#fff; border-top:0;
+}
+#nav .dropdown_1column { width:140px; }
+#nav .dropdown_2columns { width:320px; }
+#nav .dropdown_3columns { width:500px; }
+#nav .dropdown_4columns { width:650px; }
+#nav .dropdown_5columns { width:700px; }
+#nav li:hover .dropdown_1column, #nav li:hover .dropdown_2columns, #nav li:hover .dropdown_3columns, 
+#nav li:hover .dropdown_4columns, #nav li:hover .dropdown_5columns { left:-1px; top:16px; }
+#nav #nav_marketplace li:hover .dropdown_1column, #nav #nav_marketplace li:hover .dropdown_2columns, 
+#nav #nav_marketplace li:hover .dropdown_3columns, #nav #nav_marketplace li:hover .dropdown_4columns, 
+#nav #nav_marketplace li:hover .dropdown_5columns { left:auto; right:-1px; }
+#nav .col_1, #nav .col_2, #nav .col_3, #nav .col_4, #nav .col_5 {
+	display:inline; float: left; position: relative; margin-left: 5px; margin-right: 5px;
+}
+#nav .col_1 { width:125px; }
+#nav  #nav_main .col_1 { padding-top:5px; }
+#nav .col_1 ul { margin:0; }
+#nav .col_2 { width:145px; border-left:1px solid #c7c7c7; padding-left:14px; }
+#nav .col_3 { width:180px; }
+#nav .col_4 { width:500px; }
+#nav .col_5 { width:690px; }
+#nav .align_right { margin-right:0px; }
+#nav .align_right h3 {  margin: -10px 10px 10px -5px; padding-left: 6px;}
+#nav li:hover .align_right { left:-1px; top:auto; }
+#nav p, #nav h2, #nav ul li { font-family: Georgia, serif; text-align:left; }
+#nav h5 { font-family: Arial, Helvetica, sans-serif; text-transform:uppercase; color:#333; margin:2px 10px 4px 0; padding:4px 0 2px; font-size:85%; font-weight:bold; }
+.ie7 #nav h5, .ie8 #nav h5 { padding-left:3px; }
+#nav ul li h5 a { font-family: Arial, Helvetica, sans-serif; border:none; padding:0; }
+#nav p { font-family: Georgia, serif; margin:0 0 5px 0; padding-top:7px; }
+#nav .column1 { float: left; width: 75px; border:0px solid #aaaaaa; }
+#nav .column2 { width: 75px; border:0px solid #aaaaaa; } 
+#nav .column3 { width: 75px; border:0px solid #aaaaaa; }
+#nav .column4 { float: right; width: 75px; border:0px solid #aaaaaa; }
+#main { width:100%; margin:10px 0; }
+#main p { margin:12px 0 }
+.bodytext { font-size: 100% /* 12px */; } /* to be removed later */
+
+#content { background:transparent url('http://seattletimes.nwsource.com/art/ui/1024/v_2011/bg_sidebar_repeat.gif') repeat-y 640px 0; }
+#photo_story_content { background:none; }
+
+#leftcolumn { float: left; width: 632px; text-align: left; margin-top:5px; }
+.pgtime { margin:5px 0; color:#575757; text-transform:none; }
+.title_page {  }
+#rightcolumn { float: right; width: 300px; text-align: left; overflow:hidden; padding-top:0px; }
+
+.footer { width:100%; border-top:2px solid #8a8a8a; margin-top:20px; background-color:#fff; }
+.footer a, .footer a:visited, .footer a:link { text-decoration:none; }
+.footer a:hover, .footer a:active { text-decoration:underline; color:#09334B; }
+.footer ul, .footer li, .footer p { margin:0; padding:0; }
+#footer-left { float:left; width:815px; }
+.footer p { font-family:Arial, sans-serif; color:#333; text-indent:0; }
+.footer #footer-sitemap { border-bottom:1px solid #c7c7c7; margin-top:5px; padding-bottom:2px; }
+.footer #footer-sitemap ul { margin:0 0 5px; padding-left:10px }
+.footer #footer-sitemap li { float:left; margin:0; padding:2px 10px 2px 0; }
+.footer #footer-sitemap li a { font-family:Arial, sans-serif; }
+.footer .footer-links { float:left; font-family:Arial, sans-serif; }
+.footer .footer-links a { font-family:Arial, sans-serif; line-height:1.5em; }
+.footer .footer-links.fl_col1 { padding:20px 20px 20px 10px; }
+.footer .footer-links.fl_col2, .footer .footer-links.fl_col3, .footer .footer-links.fl_col4 { padding:20px 20px 20px; }
+.footer .footer-links.fl_col5 { padding:20px 0 0 10px; }
+.footer .footer-links p { text-transform:uppercase; margin:7px 0 4px; font-weight:bold; }
+.footer .footer-links li { padding:2px 0; line-height:1em; }
+#footer-right { float:right; width:140px; margin-top:15px; background-color:#fff; }
+#footer-right a { color:#333; font-family:Arial, sans-serif; }
+#footer-bottom p { margin:0 0 5px; padding-left:10px }
+#footer-bottom p#footer-bottom-logo { border-bottom: 1px solid #C7C7C7; /* margin-top:-15px; */ }
+#footer-bottom img { margin-bottom:2px; }
+#footer-bottom-p1 { font-weight:bold; }
+#footer-bottom-p1 a { font-weight:normal; }
+#footer-bottom-p2 a { font-family:Arial, sans-serif; }
+#footer-bottom-p3 a { font-weight:bold; font-family:Arial, sans-serif; color:#333; }
+
+/*#######################################################
+!5! section/channel specific
+#######################################################*/
+
+
+
+/*#######################################################
+!6! page-specific
+#######################################################*/
+
+.pg_hp #leftcolumn { margin-top:10px; }
+.pg_hp .columns12 { width: 300px; padding:10px 10px 10px 0; }
+.pg_hp .columns34 { width: 300px; padding:10px 0 10px 10px; }
+.pg_hp .handcoded .columns12, .pg_hp .handcoded .columns34 { padding-top:0; padding-bottom:0; }
+.pg_hp .columns12 h4, .pg_hp .columns34 h4 { margin:0 0 5px; }
+.pg_hp .columns12 h4 .morelink, .pg_hp .columns34 h4 .morelink { top:5px; }
+.pg_hp #rightcolumn .co_teaser_2col { margin-top:10px; }
+/* fix distortion of zoom icon on CP photo */
+.pg_hp a.popup_enlarge img.ui {
+    height: 12px;
+}
+
+
+.pg_story .summary { color: #575757; font-size: 130%; margin-bottom: 18px;}
+.pg_story p.byline  { margin:2px 0 ; }
+.pg_story .source { font-style:italic; margin: 2px 0 16px 0; }
+.pg_story .body { font-size:117%; }
+.pg_story .crosspromo_comments_ad { margin-left:14px; width:298px; }
+
+.pg_story #morecontainer {margin: 30px 0 0 0;}
+.pg_story #morecontainer a { float:right; margin:5px 0 5px 70px; padding-right: 25px; background: url("http://seattletimes.nwsource.com/art/ui/1024/v_2011/icons/large_arrow2.gif") no-repeat scroll right center  transparent; text-decoration:none; text-align:right; font-weight:bold;}
+.pg_story #morecontainer a:hover  {text-decoration:underline; color:#09334B;}
+.pg_story #morecontainer h3 { color:#333333; font-size:12px; text-transform:none; border:none; margin: 0; padding: 0;}
+
+.pg_story #morecontainer p{ margin:0; }
+.pg_story #morecontainer a:hover p{text-decoration:underline; color:#09334B;}
+.pg_story div.insetbox p.title, .pg_story div.infobox p.title { font-size:14px;}
+.pg_story ul.iconbglink a, .pg_blog ul.iconbglink a {font-family:Georgia, "Times New Roman", Times, serif; text-decoration:none;}
+.pg_story ul.iconbglink a:hover {text-decoration:underline; color:#09334B;}
+
+/*Overide h3 styles for Newsletter component*/
+.pg_story #socialemail h3, .pg_blog #socialemail h3 { border:none; color:#4d4d4d; font-size:15px; font-weight:bold; text-transform:none; margin:-10px 0; }
+.pg_story #socialemail p.divider, .pg_blog #socialemail p.divider { clear:both; }
+
+.pg_story #rightcolumn .co_teaser_2col, .pg_blog #rightcolumn .co_teaser_2col { margin-top:-5px; }
+
+/* fix improperly formatted h3's that have been apearing in Sports articles over the weekend - 4-9-12*/
+.pg_story #leftcolumn div.body h3 { border:none; text-transform:none; clear:none; padding:0; }
+
+/* BLOG STYLES */
+.pg_blog .body, .pg_blog_index .body, .pg_blog_fullwidth .body { font-size:117%; }
+.pg_blog div.body blockquote, .pg_blog_index div.body blockquote { margin:20px; background:none; font-size:100%; }
+
+/*BLOG COMMENTS*/
+.pg_blog_crosspromo_comments { background-color: #FFF; height: auto; padding-bottom: 20px; width: 300px; }
+.pg_blog_crosspromo_comments_ad .gc_teasers_read a{  background: none; float: none; padding: 0; text-transform: uppercase; color:#BC5C23; text-decoration:none; font-size:85%; }
+.pg_blog_crosspromo_comments_ad .gc_teasers_read a:hover, .crosspromo_comments_ad .gc_teasers_read a:active { text-decoration:underline; }
+
+/* Maintain style for sharing icons in The Today File blog*/
+.pg_story .addthis_share, .pg_blog .addthis_share { float:right;width:200px; }
+.pg_story .addthis_share span, .pg_blog .addthis_share span, .pg_wpblog .addthis_share span, .pg_blog_index .addthis_share a,
+.pg_blog_fullwidth .addthis_share a, .pg_specialreport .addthis_share
+{ margin-left:5px; }
+
+
+
+/* PHOTOBLOG
+--------------------------*/
+#photoblog {
+  /*width: 920px; commented out because it was breaking outbrain in IE7 arichardson -4/13/11*/
+}
+#photoblog .photo_entry {
+	width: 922px;
+	margin: 0 0 40px 0;;
+}
+#photoblog .portrait {
+	width: 610px !important;
+}
+#photoblog .photo_entry img {
+	border: 1px solid #1a1a1a;
+	display: block;
+	margin: 0 auto;
+}
+#photoblog .photo_entry p.credit {
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin: 0 0 2px 0;
+}
+#photoblog .widget {
+	float: left;
+	width: 280px;
+	margin: 0 20px 40px 0;
+}
+
+/* Wordpress Styles for Today File */
+.ie9 #access.blogNav { height:18px; }
+.pg_wpblog p.rssOptions { border-top: none; padding: 0; }
+
+/* remove this style when moveable type blogs are retired */
+.blogpic450 {
+        width:450px;
+        margin-left:14px;
+        line-height:100%; 
+        text-align:left; 
+        float:right; 
+}
+
+/*#######################################################
+!7! misc
+#######################################################*/
+/*myCapture overrides*/
+.MYCLargePhotoBorder img {max-width:500px;} /*Sets max width img on sales page.*/
+/* remove when NWsource tabbed cross promo is taken down*/
+#xp h3{border:none;}
