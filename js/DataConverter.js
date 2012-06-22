@@ -41,7 +41,7 @@ function DataConverter(nodeId) {
 
     this.useUnderscores         = true;
     this.headersProvided        = true;
-    this.downcaseHeaders        = true;
+    this.downcaseHeaders        = false;
     this.upcaseHeaders          = false;
     this.includeWhiteSpace      = true;
     this.useTabsForIndent       = false;
