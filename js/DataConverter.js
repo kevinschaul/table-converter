@@ -15,9 +15,6 @@ function DataConverter(nodeId) {
 
     this.outputDataTypes = [ 
         {"text":"HTML", "id":"html", "notes":""},
-        {"text":"JSON - Properties", "id":"json", "notes":""},
-        {"text":"JSON - Column Arrays", "id":"jsonArrayCols", "notes":""},
-        {"text":"JSON - Row Arrays", "id":"jsonArrayRows", "notes":""}
     ];
     this.outputDataType         = "html";
     this.id                     = "table-1";
