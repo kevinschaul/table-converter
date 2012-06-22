@@ -1,4 +1,7 @@
-
+.span6 {
+    width: 50%;
+    float: left;
+}
 textarea.input {
     width: 100%;
     height: 200px;
