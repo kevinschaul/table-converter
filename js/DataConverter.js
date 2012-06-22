@@ -9,41 +9,42 @@
 
 function DataConverter(nodeId) {
 
-  //---------------------------------------
-  // PUBLIC PROPERTIES
-  //---------------------------------------
+//---------------------------------------
+// PUBLIC PROPERTIES
+//---------------------------------------
 
-  this.outputDataTypes = [ 
-    {"text":"HTML",                   "id":"html",             "notes":""},
-                                {"text":"JSON - Properties",      "id":"json",             "notes":""},
-                                {"text":"JSON - Column Arrays",   "id":"jsonArrayCols",    "notes":""},
-                                {"text":"JSON - Row Arrays",      "id":"jsonArrayRows",    "notes":""}];
-  this.outputDataType         = "html";
-  
-  this.columnDelimiter        = "\t";
-  this.rowDelimiter           = "\n";
-  
-  this.inputTextArea          = $("#dataInput");
-  this.outputTextArea         = $("#dataOutput");
-  this.dataSelect             = $("#dataSelector");
-  this.previewDiv             = "#preview";
-  
-  this.inputText              = "";
-  this.outputText             = "";
-  
-  this.newLine                = "\n";
-  this.indent                 = "  ";
-  
-  this.commentLine            = "//";
-  this.commentLineEnd         = "";
-  this.tableName              = "MrDataConverter"
-  
-  this.useUnderscores         = true;
-  this.headersProvided        = true;
-  this.downcaseHeaders        = true;
-  this.upcaseHeaders          = false;
-  this.includeWhiteSpace      = true;
-  this.useTabsForIndent       = false;
+    this.outputDataTypes = [ 
+        {"text":"HTML", "id":"html", "notes":""},
+        {"text":"JSON - Properties", "id":"json", "notes":""},
+        {"text":"JSON - Column Arrays", "id":"jsonArrayCols", "notes":""},
+        {"text":"JSON - Row Arrays", "id":"jsonArrayRows", "notes":""}
+    ];
+    this.outputDataType         = "html";
+
+    this.columnDelimiter        = "\t";
+    this.rowDelimiter           = "\n";
+
+    this.inputTextArea          = $("#dataInput");
+    this.outputTextArea         = $("#dataOutput");
+    this.dataSelect             = $("#dataSelector");
+    this.previewDiv             = "#preview";
+
+    this.inputText              = "";
+    this.outputText             = "";
+
+    this.newLine                = "\n";
+    this.indent                 = "  ";
+
+    this.commentLine            = "//";
+    this.commentLineEnd         = "";
+    this.tableName              = "MrDataConverter"
+
+    this.useUnderscores         = true;
+    this.headersProvided        = true;
+    this.downcaseHeaders        = true;
+    this.upcaseHeaders          = false;
+    this.includeWhiteSpace      = true;
+    this.useTabsForIndent       = false;
 
 }
 
@@ -56,13 +57,6 @@ DataConverter.prototype.create = function() {
 
     this.outputTextArea.click(function(evt) {
         this.select();
-    });
-
-    $("#insertSample").bind("click",function(evt){
-        //TODO
-        evt.preventDefault();
-        self.insertSampleData();
-        self.convert();
     });
 
     $("#dataInput").keyup(function() {
@@ -109,10 +103,4 @@ DataConverter.prototype.convert = function() {
 
     };
 }
-
-
-DataConverter.prototype.insertSampleData = function() {
-  this.inputTextArea.val("NAME\tVALUE\tCOLOR\tDATE\nAlan\t12\tblue\tSep. 25, 2009\nShan\t13\t\"green\tblue\"\tSep. 27, 2009\nJohn\t45\torange\tSep. 29, 2009\nMinna\t27\tteal\tSep. 30, 2009");
-}
-
 
