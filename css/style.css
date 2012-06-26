@@ -13,17 +13,18 @@ textarea.input {
     padding: 15px;
     border: 1px solid #ccc;
 }
-
+form {
+    text-align: left;
+}
 
 table {
     text-align: left;
+    border-collapse: collapse;
+    margin:0 0 14px 0;
+    width: 100%;
 }
-tr {
-    line-height: 2.0em;
-}
-tr.even {
-    background-color: #ccc;
-}
-tr.odd {
+
+tbody tr:nth-child(odd) td, tbody tr.odd td {
     background-color: #eee;
 }
+

@@ -44,8 +44,10 @@ function DataConverter(nodeId) {
     this.includeWhiteSpace      = true;
     this.useTabsForIndent       = false;
 
+    this.sortable               = true;
     this.sortColumn             = 0;
     this.sortOrder              = 0;
+    this.sortOptions            = {sortOrder: [[0,0]]};
 
 }
 
@@ -81,6 +83,10 @@ DataConverter.prototype.create = function() {
         self.sortOrder = $("#select-sort-order").val();
         self.sort();
     });
+    $("#checkbox-sortable").change(function() {
+        self.sortable = $("#checkbox-sortable").val();
+        self.sort();
+    });
 }
 
 
@@ -107,10 +113,18 @@ DataConverter.prototype.convert = function() {
         var errors = parseOutput.errors;
 
         this.outputText = DataGridRenderer[this.outputDataType](dataGrid, headerNames, headerTypes, this.indent, this.newLine, this.id);
-        this.outputTextArea.val(errors + this.outputText);
+
+        var scripts = "";
+
+        if (this.sortable) {
+            scripts += "$(\"#table-1\").tablesorter("
+                    + this.sortOptions + ");\n";
+        }
+
+        this.outputTextArea.val(errors + scripts + this.outputText);
 
         $(this.previewDiv).html(this.outputText);
-        
+
     };
 
 
@@ -121,15 +135,21 @@ DataConverter.prototype.convert = function() {
                 + headerNames[i] + "</option>";
     }
     $("#select-sort").html(selectOptions);
+
+    this.sort();
 }
 
 DataConverter.prototype.sort = function() {
-
-    var options = {
-        sortList: [
-            [this.sortColumn, this.sortOrder]
-        ]
-    };
-    $("#table-1").tablesorter(options);
+    //TODO sorting breaks even/odd classes
+    //TODO is this the correct way to do checkboxes?
+    if (this.sortable === "on") {
+        this.sortOptions = {
+            sortList: [
+                [this.sortColumn, this.sortOrder]
+            ]
+        };
+        $("#table-1").tablesorter(this.sortOptions);
+    }
+    //TODO else refresh content from input (overrides preview sort
 }
 
