@@ -1,5 +1,3 @@
-# Table converter
-
 ## What is table converter?
 
 It's a tool for web producers to easily create HTML tables from spreadsheets. Table converter allows users to easily preview their table.
