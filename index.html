@@ -5,34 +5,11 @@
     <meta charset="utf-8">
     <title>Table converter</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/seattletimes.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <style>
-    body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-    }
-    </style>
 </head>
 
 <body>
-
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <a class="brand" href="#">Table converter</a>
-            <div class="nav-collapse">
-                <ul class="nav">
-                    <li class="active"><a href="#">Home</a></li>
-                </ul>
-            </div><!--/.nav-collapse -->
-        </div>
-    </div>
-</div>
 
 <div class="container">
 
@@ -41,18 +18,35 @@
 
     <div class="row">
         <div class="span6">
-            <h3>Input</h3>
+            <h2>Input</h2>
             <textarea class="input" id="dataInput"></textarea>
         </div>
         <div class="span6">
-            <h3>Output</h3>
+            <h2>Output</h2>
             <textarea class="input" id="dataOutput"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12">
+            <h4>Options</h4>
+            <form id="form-options">
+                <input type="checkbox" id="checkbox-sortable">Sortable</input>
+                <br />
+                <label for="select-sort">Default sort order:</label>
+                <select id="select-sort">
+                <!-- options are filled in with js -->
+                </select>
+                <select id="select-sort-order">
+                    <option value="0">Ascending</option>
+                    <option value="1">Descending</option>
+                </select>
+            </form>
         </div>
     </div>
 
     <div class="row">
         <div class="span12">
-            <h3>Preview</h3>
+            <h2>Preview</h2>
             <div id="preview"></div>
         </div>
     </div>
@@ -60,6 +54,7 @@
 </div> <!-- /container -->
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
 <script type="text/javascript" src="js/CSVParser.js"></script>
 <script type="text/javascript" src="js/DataGridRenderer.js"></script>
 <script type="text/javascript" src="js/DataConverter.js"></script>

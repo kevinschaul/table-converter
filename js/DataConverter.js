@@ -15,11 +15,9 @@ function DataConverter(nodeId) {
 
     this.outputDataTypes = [ 
         {"text":"HTML", "id":"html", "notes":""},
-        {"text":"JSON - Properties", "id":"json", "notes":""},
-        {"text":"JSON - Column Arrays", "id":"jsonArrayCols", "notes":""},
-        {"text":"JSON - Row Arrays", "id":"jsonArrayRows", "notes":""}
     ];
     this.outputDataType         = "html";
+    this.id                     = "table-1";
 
     this.columnDelimiter        = "\t";
     this.rowDelimiter           = "\n";
@@ -41,10 +39,15 @@ function DataConverter(nodeId) {
 
     this.useUnderscores         = true;
     this.headersProvided        = true;
-    this.downcaseHeaders        = true;
+    this.downcaseHeaders        = false;
     this.upcaseHeaders          = false;
     this.includeWhiteSpace      = true;
     this.useTabsForIndent       = false;
+
+    this.sortable               = true;
+    this.sortColumn             = 0;
+    this.sortOrder              = 0;
+    this.sortOptions            = {sortOrder: [[0,0]]};
 
 }
 
@@ -71,6 +74,19 @@ DataConverter.prototype.create = function() {
         self.outputDataType = $(this).val();
         self.convert();
     });
+
+    $("#select-sort").change(function() {
+        self.sortColumn = $("#select-sort").val();
+        self.sort();
+    });
+    $("#select-sort-order").change(function() {
+        self.sortOrder = $("#select-sort-order").val();
+        self.sort();
+    });
+    $("#checkbox-sortable").change(function() {
+        self.sortable = $("#checkbox-sortable").val();
+        self.sort();
+    });
 }
 
 
@@ -96,11 +112,44 @@ DataConverter.prototype.convert = function() {
         var headerTypes = parseOutput.headerTypes;
         var errors = parseOutput.errors;
 
-        this.outputText = DataGridRenderer[this.outputDataType](dataGrid, headerNames, headerTypes, this.indent, this.newLine);
-        this.outputTextArea.val(errors + this.outputText);
+        this.outputText = DataGridRenderer[this.outputDataType](dataGrid, headerNames, headerTypes, this.indent, this.newLine, this.id);
+
+        var scripts = "";
+
+        if (this.sortable) {
+            scripts += "$(\"#table-1\").tablesorter("
+                    + this.sortOptions + ");\n";
+        }
+
+        this.outputTextArea.val(errors + scripts + this.outputText);
 
         $(this.previewDiv).html(this.outputText);
 
     };
+
+
+//TODO if we want to sort..
+    var selectOptions = "";
+    for (i in headerNames) {
+        selectOptions += "<option value=\"" + i + "\">"
+                + headerNames[i] + "</option>";
+    }
+    $("#select-sort").html(selectOptions);
+
+    this.sort();
+}
+
+DataConverter.prototype.sort = function() {
+    //TODO sorting breaks even/odd classes
+    //TODO is this the correct way to do checkboxes?
+    if (this.sortable === "on") {
+        this.sortOptions = {
+            sortList: [
+                [this.sortColumn, this.sortOrder]
+            ]
+        };
+        $("#table-1").tablesorter(this.sortOptions);
+    }
+    //TODO else refresh content from input (overrides preview sort
 }
 
