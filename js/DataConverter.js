@@ -114,13 +114,14 @@ DataConverter.prototype.convert = function() {
 
         this.outputText = DataGridRenderer[this.outputDataType](dataGrid, headerNames, headerTypes, this.indent, this.newLine, this.id);
 
-        var scripts = "";
+        var scripts = "<script type=\"text/javascript\">\n";
 
         if (this.sortable) {
             scripts += "$(\"#table-1\").tablesorter("
-                    + this.sortOptions + ");\n";
+                    + JSON.stringify(this.sortOptions) + ");\n";
         }
-
+        
+        scripts += "</script>\n\n";
         this.outputTextArea.val(errors + scripts + this.outputText);
 
         $(this.previewDiv).html(this.outputText);
