@@ -114,14 +114,19 @@ DataConverter.prototype.convert = function() {
 
         this.outputText = DataGridRenderer[this.outputDataType](dataGrid, headerNames, headerTypes, this.indent, this.newLine, this.id);
 
-        var scripts = "<script type=\"text/javascript\">\n";
+        var scripts = "";
+        if (this.sortable) {
+            scripts += "<script type=\"text/javascript\" src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js\></script>\n";
+        }
+        scripts += "<script type=\"text/javascript\">\n";
 
         if (this.sortable) {
             scripts += "$(\"#table-1\").tablesorter("
                     + JSON.stringify(this.sortOptions) + ");\n";
         }
         
-        scripts += "</script>\n\n";
+        scripts += "</script>\n";
+
         this.outputTextArea.val(errors + scripts + this.outputText);
 
         $(this.previewDiv).html(this.outputText);
